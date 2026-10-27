@@ -455,6 +455,47 @@ html[data-theme="dark"] .harga-note {
   color: var(--slate-400);
 }
 
+/* harga gaya brutalist (UI BAGUS): border, garis & bayangan geser #000 +
+   judul/harga #000. di bg navy semua itu ilang -> teks putih, garis silver,
+   bayangan kartu indigo biar efek "kotak tebal" tetap kebaca */
+html[data-theme="dark"] .section-harga {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+html[data-theme="dark"] .harga-card h4,
+html[data-theme="dark"] .harga-price .amount {
+  color: #f8fafc;
+}
+html[data-theme="dark"] .harga-card,
+html[data-theme="dark"] .harga-card.populer {
+  border-color: #64748b; /* slate-500 asli */
+  box-shadow: 6px 6px 0 0 #4f46e5;
+}
+html[data-theme="dark"] .harga-card:hover {
+  box-shadow: 8px 8px 0 0 #4f46e5;
+}
+html[data-theme="dark"] .harga-price {
+  border-color: #475569;
+}
+html[data-theme="dark"] .harga-features li {
+  border-color: #475569;
+  box-shadow: 2px 2px 0 0 #475569;
+}
+html[data-theme="dark"] .harga-features li svg,
+html[data-theme="dark"] .harga-badge-populer {
+  border-color: #c7d2fe;
+}
+html[data-theme="dark"] .harga-btn {
+  border-color: #94a3b8;
+  box-shadow: 4px 4px 0 0 #475569;
+}
+html[data-theme="dark"] .harga-btn:hover {
+  box-shadow: 6px 6px 0 0 #475569;
+}
+html[data-theme="dark"] .harga-btn:active {
+  box-shadow: 2px 2px 0 0 #475569;
+}
+
 /* --- Testimoni card --- */
 html[data-theme="dark"] .testimoni-card {
   border-color: var(--slate-200);
@@ -546,10 +587,13 @@ html[data-theme="dark"] .social-proof {
 html[data-theme="dark"] .hero-glow-btn {
   background: var(--indigo-600);
 }
+/* pill FAQ: aslinya mix-blend-mode multiply -> di bg gelap semuanya jadi
+   hitam (teks ikut ilang). matiin blend, jadiin pill silver + teks gelap */
 html[data-theme="dark"] .faq-intro-capsule {
-  background: rgba(30, 41, 59, 0.88);
-  border-color: rgba(148, 163, 184, 0.2);
-  color: var(--slate-700);
+  mix-blend-mode: normal;
+  background: #e2e8f0; /* silver (slate-200 asli) */
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #1e293b; /* slate-800 asli */
 }
 html[data-theme="dark"] .section-label,
 html[data-theme="dark"] .harga-note a {

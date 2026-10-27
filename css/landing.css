@@ -723,19 +723,19 @@ body {
 
 .mockup-fade {
   position: absolute;
-  bottom: -100px;
-  left: -20px;
-  right: -20px;
-  height: 160px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 0.5) 70%, rgba(255, 255, 255, 0) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  mask-image: linear-gradient(to top, black 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
-  border-bottom-left-radius: 48px;
-  border-bottom-right-radius: 48px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 96px;
+  background: linear-gradient(to top, #fff, transparent);
+  border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
   z-index: 10;
   pointer-events: none;
+}
+@media (min-width: 640px) {
+  .mockup-fade {
+    border-radius: 0 0 var(--radius-3xl) var(--radius-3xl);
+  }
 }
 
 .mockup-frame {
