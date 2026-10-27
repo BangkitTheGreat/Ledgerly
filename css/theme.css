@@ -551,6 +551,35 @@ html[data-theme="dark"] .faq-intro-capsule {
   border-color: rgba(148, 163, 184, 0.2);
   color: var(--slate-700);
 }
-html[data-theme="dark"] .section-label {
+html[data-theme="dark"] .section-label,
+html[data-theme="dark"] .harga-note a {
   color: #a5b4fc; /* indigo-300: indigo-600 kontrasnya kurang di bg gelap */
+}
+/* judul bento chatbot di-set inline var(--purple-600) -> butuh !important */
+html[data-theme="dark"] .bento-card h4[style*="purple-600"] {
+  color: #c084fc !important; /* purple-400 */
+}
+
+/* fade transisi antar-section: aslinya putih/#f0f0f0 -> transparan (warna
+   section sebelumnya di light). di dark semua section = slate-50, jadi fade
+   gak perlu; kalau dibiarin muncul pita putih di tiap batas section */
+html[data-theme="dark"] .section-fitur::before,
+html[data-theme="dark"] .section-testimoni::before,
+html[data-theme="dark"] .section-faq::before {
+  background: none;
+}
+
+/* shape kaca di hero: glow putih 0.7 kebaca halus di bg terang, tapi di bg
+   gelap jadi coretan putih terang -> turunin glow & border-nya */
+html[data-theme="dark"] .elegant-shape {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme="dark"] .elegant-shape::after {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 70%);
+}
+
+/* kartu AI insight di mockup: ujung gradient var(--slate-900) ke-flip jadi
+   terang -> kartu pucat, teks putih gak kebaca. pin ke slate-900 asli */
+html[data-theme="dark"] .mockup-ai-card {
+  background-image: linear-gradient(-45deg, var(--indigo-900), var(--purple-800), #0f172a);
 }
