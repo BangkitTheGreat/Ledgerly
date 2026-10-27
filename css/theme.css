@@ -614,9 +614,12 @@ html[data-theme="dark"] .bento-card h4[style*="purple-600"] {
 /* garis batas antar-section: di light, section mulai dgn fade putih/#f0f0f0
    -> transparan, jadi ada tepi yg keliatan. dark: tiru polanya pakai warna
    gelap yg lebih terang dr bg (slate-800) / warna section harga */
+/* garis indigo tipis + glow indigo lembut (bukan pita abu slate yg kusam) */
 html[data-theme="dark"] .section-fitur::before,
 html[data-theme="dark"] .section-faq::before {
-  background: linear-gradient(to bottom, #1e293b, transparent);
+  border-top: 1px solid rgba(129, 140, 248, 0.22); /* indigo-400 */
+  background: radial-gradient(60% 120px at 50% 0%, rgba(99, 102, 241, 0.14), transparent),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.06), transparent);
 }
 html[data-theme="dark"] .section-testimoni::before {
   background: linear-gradient(to bottom, #0a0f1c, transparent);
