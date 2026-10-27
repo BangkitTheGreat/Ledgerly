@@ -41,35 +41,16 @@ Proyek ini bermula sebagai **Capstone Project Program Tempa Dicoding 2026** di b
 
 Pembaruan besar yang diimplementasikan pada branch pembaruan ini meliputi:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                   IKHTISAR PEMBARUAN UTAMA (UPDATE)                   │
-├───────────────────────┬────────────────────────────────────────────────┤
-│ 🎨 UI Redesign Total  │ Tampilan UI yang ditingkatkan, aurora mesh     │
-│                       │ glow, Bento Grid interaktif, & mikro-interaksi │
-├───────────────────────┼────────────────────────────────────────────────┤
-│ 🎮 Mode "Coba Demo"   │ Akses dasbor instan tanpa perlu daftar/login & │
-│                       │ tanpa backend (emulasi in-memory sessionStorage)│
-├───────────────────────┼────────────────────────────────────────────────┤
-│ 🏠 Halaman Beranda    │ Ringkasan toko baru: Hero cards, sparkline 14  │
-│                       │ hari, gauge rasio laba/stok, & best sellers    │
-├───────────────────────┼────────────────────────────────────────────────┤
-│ 👤 Halaman Akun Baru  │ Manajemen identitas toko, avatar inisial, ring-│
-│                       │ kasan katalog, status langganan, & shortcut    │
-├───────────────────────┼────────────────────────────────────────────────┤
-│ 🖼️ Shell Dasbor Canvas│ Tata letak dasbor berbingkai (*framed canvas*) │
-│                       │ dengan panel melengkung & topbar terintegrasi  │
-├───────────────────────┼────────────────────────────────────────────────┤
-│ 📑 Alur Autentikasi   │ Desain auth modern + halaman Konfirmasi Email  │
-│                       │ (konfirmasi.html) & konfirmasi password ganda  │
-├───────────────────────┼────────────────────────────────────────────────┤
-│ 🏷️ Identitas Baru     │ Logo vektor Ledgerly baru (assets/logo.svg)    │
-│                       │ memadukan panel dasbor, donut chart, & tren    │
-├───────────────────────┼────────────────────────────────────────────────┤
-│ 🗄️ Supabase Mandiri   │ File skema SQL terstruktur (supabase_schema.sql)│
-│                       │ siap import mandiri lengkap dengan RLS & RPC   │
-└───────────────────────┴────────────────────────────────────────────────┘
-```
+| Fitur / Komponen | Peningkatan & Pembaruan | Keterangan & Manfaat |
+| :--- | :--- | :--- |
+| 🎨 **Desain Antarmuka (UI)** | Redesain visual modern & aurora mesh glow | Tampilan landing page dan dashboard yang jauh lebih estetis, responsif, dan interaktif. |
+| 🎮 **Mode "Coba Demo"** | Akses instan *zero-backend* (in-memory) | Dasbor dapat langsung dieksplorasi tanpa perlu mendaftar akun atau konfigurasi database. |
+| 🏠 **Halaman Beranda** | Modul ringkasan toko (*store overview*) | Menyajikan kartu hero omzet, grafik *sparkline* 14 hari, *gauge meter* performa, dan produk terlaris. |
+| 👤 **Halaman Akun** | Manajemen profil mandiri | Rincian identitas toko, avatar inisial dinamis, status paket langganan, dan ringkasan katalog. |
+| 🖼️ **Shell Dasbor Canvas** | Tata letak berbingkai (*framed canvas*) | Desain dashboard modern dengan panel melengkung, navigasi terkelompok rapi, dan jam topbar WIB. |
+| 📑 **Alur Autentikasi** | Verifikasi email & konfirmasi sandi ganda | Onboarding pendaftaran dilengkapi validasi 2 langkah dan halaman panduan `konfirmasi.html`. |
+| 🏷️ **Identitas Visual** | Logo vektor baru (`assets/logo.svg`) | Simbol visual modern yang memadukan panel dasbor, grafik donat, kurva tren, dan batang persediaan. |
+| 🗄️ **Supabase Mandiri** | Skema basis data terstruktur & idempotent | File `supabase_schema.sql` siap pakai untuk replikasi dan deployment mandiri lengkap dengan RLS. |
 
 1. **Desain Landing Page Modern (UI yang Ditingkatkan)**:
    - Tampilan hero section dengan aurora glowing effect dan partikel interaktif.
