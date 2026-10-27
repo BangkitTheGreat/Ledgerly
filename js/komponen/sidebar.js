@@ -80,23 +80,24 @@ function renderSidebar() {
         <div class="sidebar-app-name">Ledgerly</div>
         <div class="sidebar-app-sub">Sistem UMKM</div>
       </div>
-      <button class="sidebar-tema-toggle js-tema-toggle" type="button" title="Ganti Tema" aria-label="Ganti Tema"></button>
     </div>
     <nav class="sidebar-nav">
       ${navHtml}
     </nav>
     <div class="sidebar-footer">
-      <div class="sidebar-kontrol">
-        <button type="button" class="sidebar-kontrol-btn" id="sidebar-kontrol-btn" title="Sidebar control" aria-label="Sidebar control" aria-haspopup="menu" aria-expanded="false" onclick="toggleMenuSidebar(event)">
-          ${icon("panelLeft", 16)}
-        </button>
-        <div class="sidebar-mode-menu" id="sidebar-mode-menu" role="menu" aria-label="Sidebar control" hidden>
-          <div class="sidebar-mode-judul">Sidebar control</div>
-          ${opsiMode}
+      <!-- expanded: [sidebar control][tema] sebaris. sempit: numpuk, tema pas di atas akun -->
+      <div class="sidebar-kontrol-baris">
+        <div class="sidebar-kontrol">
+          <button type="button" class="sidebar-kontrol-btn" id="sidebar-kontrol-btn" title="Sidebar control" aria-label="Sidebar control" aria-haspopup="menu" aria-expanded="false" onclick="toggleMenuSidebar(event)">
+            ${icon("panelLeft", 16)}
+          </button>
+          <div class="sidebar-mode-menu" id="sidebar-mode-menu" role="menu" aria-label="Sidebar control" hidden>
+            <div class="sidebar-mode-judul">Sidebar control</div>
+            ${opsiMode}
+          </div>
         </div>
+        <button class="sidebar-tema-toggle js-tema-toggle" type="button" title="Ganti Tema" aria-label="Ganti Tema"></button>
       </div>
-      <!-- toggle tema versi sidebar sempit: pindah ke atas akun -->
-      <button class="sidebar-tema-toggle sidebar-tema-bawah js-tema-toggle" type="button" title="Ganti Tema" aria-label="Ganti Tema"></button>
       <div class="sidebar-user">
         <a href="#akun" class="sidebar-akun-link${halamanSkrg === "#akun" ? " active" : ""}" title="Akun saya" aria-label="Akun saya">
           <div class="sidebar-avatar">${escapeHtml(inisial)}</div>

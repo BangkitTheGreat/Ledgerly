@@ -59,8 +59,6 @@
   }
   .sidebar-collapsed .sidebar-brand-text,
   .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-brand-text,
-  .sidebar-collapsed .sidebar-brand .sidebar-tema-toggle,
-  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-brand .sidebar-tema-toggle,
   .sidebar-collapsed .sidebar-link span,
   .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-link span,
   .sidebar-collapsed .sidebar-user-info,
@@ -85,14 +83,11 @@
     flex: none;
     justify-content: center;
   }
-  .sidebar-collapsed .sidebar-kontrol,
-  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-kontrol {
-    justify-content: center;
-  }
-  /* toggle tema pindah ke atas akun */
-  .sidebar-collapsed .sidebar-tema-bawah,
-  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-tema-bawah {
-    display: inline-flex;
+  /* [control][tema] numpuk -> tema pas di atas akun */
+  .sidebar-collapsed .sidebar-kontrol-baris,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-kontrol-baris {
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
@@ -313,10 +308,11 @@
   outline-offset: 2px;
 }
 
-/* -- toggle tema versi bawah: cuma muncul saat sidebar sempit (di atas akun) -- */
-.sidebar-tema-bawah {
-  display: none;
-  margin: 0 auto;
+/* -- baris bawah: [sidebar control][toggle tema] -- */
+.sidebar-kontrol-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* -- avatar + nama = link ke halaman Akun -- */
@@ -1362,4 +1358,40 @@
 }
 @media (max-width: 1023px) {
   .stats-row > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+
+/* =============================================
+   SHELL BERBINGKAI (ala referensi): sidebar nyatu ke bingkai luar tanpa
+   garis, konten jadi panel melengkung yg berdiri sendiri. garis header
+   sidebar & garis vertikal dihapus -> gak ada lagi garis yg "gak nyambung".
+   ============================================= */
+.dasbor-shell {
+  --bingkai: #eef1f6;
+  background: var(--bingkai);
+}
+.dasbor-shell .sidebar {
+  background: var(--bingkai);
+  border-right: none;
+}
+.dasbor-shell .sidebar-brand { border-bottom: none; }
+.dasbor-shell .sidebar-footer { border-top: none; }
+.dasbor-shell .sidebar-link:hover { background: rgba(15, 23, 42, 0.05); }
+.dasbor-shell .sidebar-link.active {
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+.dasbor-shell .sidebar-user { background: rgba(255, 255, 255, 0.7); }
+.dasbor-shell .sidebar-kontrol-btn:hover,
+.dasbor-shell .sidebar-kontrol-btn[aria-expanded="true"] { background: rgba(15, 23, 42, 0.06); }
+
+@media (min-width: 768px) {
+  .dasbor-shell .main-content {
+    margin: 10px 10px 10px 0;
+    border-radius: 24px;
+    overflow: hidden; /* sudut melengkung motong topbar & aurora */
+    background: var(--slate-50);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 12px 40px -20px rgba(15, 23, 42, 0.25);
+  }
+  .sidebar-mode-hover .main-content { margin-left: 82px; } /* 72px rel + 10px jarak */
 }
