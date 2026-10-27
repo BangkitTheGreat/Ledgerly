@@ -102,8 +102,10 @@ html[data-theme="dark"] .hero {
   background: linear-gradient(to bottom, var(--slate-50), rgba(30, 27, 75, 0.35), var(--slate-50));
 }
 
+/* "kaki" membulat di bawah mockup: di light = slab putih lembut di atas bg
+   hero. versi dark: slab slate-800 (lebih terang dr bg) biar tetap keliatan */
 html[data-theme="dark"] .mockup-fade {
-  background: linear-gradient(to top, var(--slate-50), transparent);
+  background: linear-gradient(to top, rgba(30, 41, 59, 1) 30%, rgba(30, 41, 59, 0.5) 70%, rgba(30, 41, 59, 0) 100%);
 }
 
 html[data-theme="dark"] .hero-cta .btn-hero-secondary,
@@ -458,9 +460,14 @@ html[data-theme="dark"] .harga-note {
 /* harga gaya brutalist (UI BAGUS): border, garis & bayangan geser #000 +
    judul/harga #000. di bg navy semua itu ilang -> teks putih, garis silver,
    bayangan kartu indigo biar efek "kotak tebal" tetap kebaca */
+/* grid kotak-kotak: di light #f0f0f0 (lebih gelap dr section lain) + garis
+   hitam tipis. dark = kebalikannya: bg lebih gelap + garis putih.
+   background-size wajib diulang: shorthand `background:` di atas mereset-nya */
 html[data-theme="dark"] .section-harga {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-color: #0a0f1c;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 html[data-theme="dark"] .harga-card h4,
 html[data-theme="dark"] .harga-price .amount {
@@ -604,13 +611,15 @@ html[data-theme="dark"] .bento-card h4[style*="purple-600"] {
   color: #c084fc !important; /* purple-400 */
 }
 
-/* fade transisi antar-section: aslinya putih/#f0f0f0 -> transparan (warna
-   section sebelumnya di light). di dark semua section = slate-50, jadi fade
-   gak perlu; kalau dibiarin muncul pita putih di tiap batas section */
+/* garis batas antar-section: di light, section mulai dgn fade putih/#f0f0f0
+   -> transparan, jadi ada tepi yg keliatan. dark: tiru polanya pakai warna
+   gelap yg lebih terang dr bg (slate-800) / warna section harga */
 html[data-theme="dark"] .section-fitur::before,
-html[data-theme="dark"] .section-testimoni::before,
 html[data-theme="dark"] .section-faq::before {
-  background: none;
+  background: linear-gradient(to bottom, #1e293b, transparent);
+}
+html[data-theme="dark"] .section-testimoni::before {
+  background: linear-gradient(to bottom, #0a0f1c, transparent);
 }
 
 /* shape kaca di hero: glow putih 0.7 kebaca halus di bg terang, tapi di bg
