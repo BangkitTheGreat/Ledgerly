@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konfirmasi Email — Ledgerly</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/register.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <script>(function(){try{if(localStorage.getItem('ledgerly_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+    <style>
+      .konfirmasi-box { text-align: center; }
+      .konfirmasi-icon { font-size: 56px; line-height: 1; margin-bottom: 16px; }
+      .konfirmasi-box .subtitle strong { color: var(--indigo-600); word-break: break-all; }
+      .konfirmasi-box .login-submit { text-decoration: none; margin-top: 24px; }
+    </style>
+  </head>
+  <body>
+    <div class="login-wrapper">
+      <div class="login-grid">
+        <!-- panel kiri - info -->
+        <div class="login-info">
+          <div class="blob-1"></div>
+          <div class="blob-2"></div>
+
+          <div class="login-info-inner">
+            <div class="login-brand">
+              <div class="login-brand-icon">
+                <div style="padding: 8px">
+                  <img src="assets/logo.svg" alt="Ledgerly Logo" style="width: 100%; height: 100%; filter: brightness(0) invert(1)" />
+                </div>
+              </div>
+              <div>
+                <div class="login-brand-name">Ledgerly</div>
+                <div class="login-brand-sub">TP-G007 • Capstone Project</div>
+              </div>
+            </div>
+
+            <div class="login-content">
+              <h1>Satu Langkah Lagi</h1>
+              <p>Konfirmasi email Anda supaya akun Ledgerly aktif dan data bisnis Anda tetap aman.</p>
+            </div>
+
+            <div class="login-footer-text">© 2026 Tim TP-G007 — Tempa led by Dicoding</div>
+          </div>
+        </div>
+
+        <!-- panel kanan - status konfirmasi -->
+        <div class="login-form-panel">
+          <div class="login-form-inner">
+            <div class="login-mobile-brand">
+              <div class="login-mobile-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="20" x2="12" y2="10" />
+                  <line x1="18" y1="20" x2="18" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="16" />
+                </svg>
+              </div>
+              <span class="login-mobile-name">Ledgerly</span>
+            </div>
+
+            <!-- 1. habis daftar: suruh cek email -->
+            <div class="konfirmasi-box" id="status-cek">
+              <div class="konfirmasi-icon">📧</div>
+              <h2>Cek Email Anda</h2>
+              <p class="subtitle">
+                Kami sudah mengirim link konfirmasi ke <strong id="email-tujuan">email Anda</strong>.
+                Klik link tersebut untuk mengaktifkan akun. Tidak ketemu? Cek folder Spam/Promosi.
+              </p>
+              <a href="login.html" class="login-submit">Ke Halaman Masuk</a>
+            </div>
+
+            <!-- 2. balik dari link email: sukses -->
+            <div class="konfirmasi-box" id="status-sukses" hidden>
+              <div class="konfirmasi-icon">✅</div>
+              <h2>Email Sudah Dikonfirmasi</h2>
+              <p class="subtitle">Akun Anda sudah aktif. Silakan masuk untuk mulai menggunakan Ledgerly.</p>
+              <a href="login.html" class="login-submit">Masuk Sekarang</a>
+            </div>
+
+            <!-- 3. link kadaluarsa / gak valid -->
+            <div class="konfirmasi-box" id="status-gagal" hidden>
+              <div class="konfirmasi-icon">⚠️</div>
+              <h2>Link Tidak Valid</h2>
+              <p class="subtitle" id="pesan-gagal">Link konfirmasi sudah kedaluwarsa atau sudah pernah dipakai.</p>
+              <a href="login.html" class="login-submit">Ke Halaman Masuk</a>
+              <div class="auth-switch-text">Belum terdaftar? <a href="register.html">Daftar ulang</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/vendor/supabase.js?v=9"></script>
+    <script src="js/supabase.js?v=9"></script>
+    <script src="js/theme.js?v=9"></script>
+    <script>
+      function tampilStatus(id) {
+        ['status-cek', 'status-sukses', 'status-gagal'].forEach(function (s) {
+          document.getElementById(s).hidden = s !== id;
+        });
+      }
+
+      (async function () {
+        // supabase nempelin hasil verifikasi di hash (#access_token / #error) atau ?code (PKCE)
+        var params = new URLSearchParams(location.hash.slice(1) + '&' + location.search.slice(1));
+        var dariLinkEmail = params.has('access_token') || params.has('code') || params.has('error');
+
+        if (!dariLinkEmail) {
+          // datang dr register.js -> tampilin email tujuan (disimpan di sessionStorage, bukan URL)
+          var email = null;
+          try { email = sessionStorage.getItem('ledgerly_email_daftar'); } catch (e) {}
+          if (email) document.getElementById('email-tujuan').textContent = email;
+          return;
+        }
+
+        history.replaceState(null, '', location.pathname); // buang token dr address bar
+
+        if (params.has('error')) {
+          tampilStatus('status-gagal'); // pesan default (bahasa Indonesia) di HTML
+          return;
+        }
+
+        // supabase-js udah baca token di URL pas init (detectSessionInUrl)
+        var session = null;
+        try {
+          var res = await window.supabaseClient.auth.getSession();
+          session = res.data ? res.data.session : null;
+        } catch (e) {}
+
+        if (session) {
+          // ponytail: sesi dr link dibuang, user login manual lewat tombol Masuk
+          try { await window.supabaseClient.auth.signOut(); } catch (e) {}
+          try { sessionStorage.removeItem('ledgerly_email_daftar'); } catch (e) {}
+          tampilStatus('status-sukses');
+        } else {
+          tampilStatus('status-gagal');
+        }
+      })();
+    </script>
+  </body>
+</html>

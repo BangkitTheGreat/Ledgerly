@@ -201,6 +201,7 @@ export default defineConfig(({ mode }) => {
           main: resolve(__dirname, 'index.html'),
           login: resolve(__dirname, 'login.html'),
           register: resolve(__dirname, 'register.html'),
+          konfirmasi: resolve(__dirname, 'konfirmasi.html'),
           dasbor: resolve(__dirname, 'dasbor.html'),
         },
       },

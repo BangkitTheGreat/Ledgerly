@@ -102,8 +102,10 @@ html[data-theme="dark"] .hero {
   background: linear-gradient(to bottom, var(--slate-50), rgba(30, 27, 75, 0.35), var(--slate-50));
 }
 
+/* "kaki" membulat di bawah mockup: di light = slab putih lembut di atas bg
+   hero. versi dark: slab slate-800 (lebih terang dr bg) biar tetap keliatan */
 html[data-theme="dark"] .mockup-fade {
-  background: linear-gradient(to top, var(--slate-50), transparent);
+  background: linear-gradient(to top, rgba(30, 41, 59, 1) 30%, rgba(30, 41, 59, 0.5) 70%, rgba(30, 41, 59, 0) 100%);
 }
 
 html[data-theme="dark"] .hero-cta .btn-hero-secondary,
@@ -455,6 +457,56 @@ html[data-theme="dark"] .harga-note {
   color: var(--slate-400);
 }
 
+/* harga gaya brutalist (UI BAGUS): border, garis & bayangan geser #000 +
+   judul/harga #000. di bg navy semua itu ilang -> teks putih, garis silver,
+   bayangan kartu indigo biar efek "kotak tebal" tetap kebaca */
+/* grid kotak-kotak: di light #f0f0f0 (lebih gelap dr section lain) + garis
+   hitam tipis. dark = kebalikannya: bg lebih gelap + garis putih.
+   background-size wajib diulang: shorthand `background:` di atas mereset-nya */
+html[data-theme="dark"] .section-harga {
+  background-color: #0a0f1c;
+  /* layer 1 (paling atas) = jembatan #0f172a di awal & akhir, nutupin grid
+     pelan2 -> grid & warna masuk/keluar halus, gak mulai mendadak */
+  /* atas mulai dr #141d36 (= bg di sekitar kartu cara kerja), bawah #0f172a */
+  background-image: linear-gradient(to bottom, #141d36 0, rgba(20, 29, 54, 0) 180px, rgba(15, 23, 42, 0) calc(100% - 180px), #0f172a 100%),
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 100% 100%, 16px 16px, 16px 16px;
+}
+html[data-theme="dark"] .harga-card h4,
+html[data-theme="dark"] .harga-price .amount {
+  color: #f8fafc;
+}
+html[data-theme="dark"] .harga-card,
+html[data-theme="dark"] .harga-card.populer {
+  border-color: #64748b; /* slate-500 asli */
+  box-shadow: 6px 6px 0 0 #4f46e5;
+}
+html[data-theme="dark"] .harga-card:hover {
+  box-shadow: 8px 8px 0 0 #4f46e5;
+}
+html[data-theme="dark"] .harga-price {
+  border-color: #475569;
+}
+html[data-theme="dark"] .harga-features li {
+  border-color: #475569;
+  box-shadow: 2px 2px 0 0 #475569;
+}
+html[data-theme="dark"] .harga-features li svg,
+html[data-theme="dark"] .harga-badge-populer {
+  border-color: #c7d2fe;
+}
+html[data-theme="dark"] .harga-btn {
+  border-color: #94a3b8;
+  box-shadow: 4px 4px 0 0 #475569;
+}
+html[data-theme="dark"] .harga-btn:hover {
+  box-shadow: 6px 6px 0 0 #475569;
+}
+html[data-theme="dark"] .harga-btn:active {
+  box-shadow: 2px 2px 0 0 #475569;
+}
+
 /* --- Testimoni card --- */
 html[data-theme="dark"] .testimoni-card {
   border-color: var(--slate-200);
@@ -524,4 +576,87 @@ html[data-theme="dark"] .mockup-sync {
 }
 html[data-theme="dark"] .mockup-product-row {
   border-color: var(--slate-200);
+}
+/* =============================================
+   Landing redesign (UI BAGUS): bento, hero pill, faq capsule
+   class baru ini pakai bg putih literal -> tanpa override, teks terang
+   (hasil flip slate) numpuk di atas kartu putih & gak kebaca.
+   ============================================= */
+html[data-theme="dark"] .bento-card {
+  background: var(--surface);
+}
+html[data-theme="dark"] .hero-badge-beam {
+  background: rgba(30, 41, 59, 0.8);
+}
+html[data-theme="dark"] .btn-hero-pill-secondary,
+html[data-theme="dark"] .social-proof {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+/* bg-nya var(--slate-900) -> ke-flip jadi terang, teks #fff jadi gak kebaca.
+   pakai indigo biar tetap jadi CTA utama yg menonjol di bg gelap */
+html[data-theme="dark"] .hero-glow-btn {
+  background: var(--indigo-600);
+}
+/* pill FAQ: aslinya mix-blend-mode multiply -> di bg gelap semuanya jadi
+   hitam (teks ikut ilang). matiin blend, jadiin pill silver + teks gelap */
+html[data-theme="dark"] .faq-intro-capsule {
+  mix-blend-mode: normal;
+  background: #e2e8f0; /* silver (slate-200 asli) */
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #1e293b; /* slate-800 asli */
+}
+html[data-theme="dark"] .section-label,
+html[data-theme="dark"] .harga-note a {
+  color: #a5b4fc; /* indigo-300: indigo-600 kontrasnya kurang di bg gelap */
+}
+/* judul bento chatbot di-set inline var(--purple-600) -> butuh !important */
+html[data-theme="dark"] .bento-card h4[style*="purple-600"] {
+  color: #c084fc !important; /* purple-400 */
+}
+
+/* transisi antar-section (dark): tiap batas pakai 1 warna "jembatan" yg sama
+   (#0f172a = bg body/ujung hero). section memudar ke jembatan di awal & akhir
+   (180px), jadi 2 sisi batas warnanya identik -> gak ada garis/tepi kaget.
+   isi section dibedain tipis (#141d36, indigo) biar tetap kerasa pindah section.
+   overlay ::before versi light dimatiin krn jembatannya udh di bg section */
+html[data-theme="dark"] .section-fitur::before,
+html[data-theme="dark"] .section-testimoni::before,
+html[data-theme="dark"] .section-faq::before {
+  background: none;
+}
+/* fitur -> cara kerja: tanpa gradasi. bawah fitur tetap #141d36 & bg di
+   margin kartu .section-simulasi disamain, jadi rata. yg keliatan di margin
+   itu bg <html> (konten landing meluber keluar box body), bukan body.
+   :has() biar cuma kena landing, bukan dasbor */
+html[data-theme="dark"] .section-fitur {
+  background: linear-gradient(to bottom, #0f172a 0, #141d36 180px);
+}
+html[data-theme="dark"]:has(body > .section-fitur),
+html[data-theme="dark"] body:has(> .section-fitur) {
+  background: #141d36;
+}
+/* testimoni -> faq: dua2nya section terang, jadi turun ke jembatan gelap
+   malah keliatan kyk lekukan pembatas. di sini cuma turun tipis (#121a32)
+   & lebih panjang (240px) biar nyaris gak kerasa */
+html[data-theme="dark"] .section-testimoni {
+  background: linear-gradient(to bottom, #0f172a 0, #141d36 180px, #141d36 calc(100% - 240px), #121a32 100%);
+}
+html[data-theme="dark"] .section-faq {
+  background: linear-gradient(to bottom, #121a32 0, #141d36 240px, #141d36 calc(100% - 180px), #0f172a 100%);
+}
+
+/* shape kaca di hero: glow putih 0.7 kebaca halus di bg terang, tapi di bg
+   gelap jadi coretan putih terang -> turunin glow & border-nya */
+html[data-theme="dark"] .elegant-shape {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme="dark"] .elegant-shape::after {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 70%);
+}
+
+/* kartu AI insight di mockup: ujung gradient var(--slate-900) ke-flip jadi
+   terang -> kartu pucat, teks putih gak kebaca. pin ke slate-900 asli */
+html[data-theme="dark"] .mockup-ai-card {
+  background-image: linear-gradient(-45deg, var(--indigo-900), var(--purple-800), #0f172a);
 }

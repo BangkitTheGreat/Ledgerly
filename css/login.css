@@ -322,3 +322,55 @@
   text-decoration: none;
   font-weight: 600;
 }
+
+/* =============================================
+   VISUAL UPGRADE LAYER (dari CAPSTONE)
+   override via cascade — base multi-state di atas tetap utuh
+   ============================================= */
+.login-wrapper {
+  background: linear-gradient(-45deg, #f8fafc, #eef2ff, #faf5ff, #f3e8ff, #e0e7ff);
+  background-size: 400% 400%;
+  animation: gradientPan 15s ease infinite;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes gradientPan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes beamOverlayPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.9; }
+}
+#beams-overlay { animation: beamOverlayPulse 10s ease-in-out infinite; }
+
+/* glass card terpusat */
+.login-grid {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1100px;
+  min-height: 640px;
+  margin: 32px auto;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.02);
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+}
+@media (min-width: 1024px) {
+  .login-grid { grid-template-columns: 1fr 1fr; }
+}
+.login-info {
+  background: linear-gradient(135deg, var(--indigo-600), var(--indigo-800), var(--slate-900));
+  padding: 64px;
+}
