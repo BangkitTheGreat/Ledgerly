@@ -467,7 +467,8 @@ html[data-theme="dark"] .section-harga {
   background-color: #0a0f1c;
   /* layer 1 (paling atas) = jembatan #0f172a di awal & akhir, nutupin grid
      pelan2 -> grid & warna masuk/keluar halus, gak mulai mendadak */
-  background-image: linear-gradient(to bottom, #0f172a 0, rgba(15, 23, 42, 0) 180px, rgba(15, 23, 42, 0) calc(100% - 180px), #0f172a 100%),
+  /* atas mulai dr #141d36 (= bg di sekitar kartu cara kerja), bawah #0f172a */
+  background-image: linear-gradient(to bottom, #141d36 0, rgba(20, 29, 54, 0) 180px, rgba(15, 23, 42, 0) calc(100% - 180px), #0f172a 100%),
     linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
   background-size: 100% 100%, 16px 16px, 16px 16px;
@@ -624,8 +625,16 @@ html[data-theme="dark"] .section-testimoni::before,
 html[data-theme="dark"] .section-faq::before {
   background: none;
 }
+/* fitur -> cara kerja: tanpa gradasi. bawah fitur tetap #141d36 & bg di
+   margin kartu .section-simulasi disamain, jadi rata. yg keliatan di margin
+   itu bg <html> (konten landing meluber keluar box body), bukan body.
+   :has() biar cuma kena landing, bukan dasbor */
 html[data-theme="dark"] .section-fitur {
-  background: linear-gradient(to bottom, #0f172a 0, #141d36 180px, #141d36 calc(100% - 180px), #0f172a 100%);
+  background: linear-gradient(to bottom, #0f172a 0, #141d36 180px);
+}
+html[data-theme="dark"]:has(body > .section-fitur),
+html[data-theme="dark"] body:has(> .section-fitur) {
+  background: #141d36;
 }
 /* testimoni -> faq: dua2nya section terang, jadi turun ke jembatan gelap
    malah keliatan kyk lekukan pembatas. di sini cuma turun tipis (#121a32)
