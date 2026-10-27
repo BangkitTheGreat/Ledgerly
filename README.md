@@ -16,20 +16,20 @@
 > Proyek ini berakar dan dikembangkan lebih lanjut dari basis proyek tim pada repositori induk:
 > 👉 **[`Kyrozu/Ledgerly:main`](https://github.com/Kyrozu/Ledgerly/tree/main)**
 > 
-> *Versi saat ini menghadirkan perombakan visual modern ("UI BAGUS"), arsitektur shell dasbor berbingkai dengan efek aurora & glassmorphism, mode instan **"Coba Demo" (Offline / Zero-Backend)**, halaman Beranda (Ringkasan Toko), halaman Akun, logo baru, serta penguatan performa dan keamanan.*
+> *Versi saat ini menghadirkan perombakan visual modern (UI yang ditingkatkan), arsitektur shell dasbor berbingkai dengan efek aurora & glassmorphism, mode instan **"Coba Demo" (Offline / Zero-Backend)**, halaman Beranda (Ringkasan Toko), halaman Akun, logo baru, serta penguatan performa dan keamanan.*
 
 ---
 
-## 👥 Tim Pengembang Asal (Capstone TP-G007)
+## 👥 Profil Tim (TP-G007)
 
 Proyek ini bermula sebagai **Capstone Project Program Tempa Dicoding 2026** di bawah tema **Smart Business & UMKM Empowerment**:
 
-| ID Peserta | Nama | Peran & Kontribusi Awal (Basis Tim) |
-| :--- | :--- | :--- |
-| **WDC007B6Y0030** | **Bangkit Agung Nugroho** | Lead Enhancer, UI Dashboard Inventory, Decision Support, Redesign "UI BAGUS", Demo Mode, Beranda & Akun |
-| **WDC480B6Y0021** | M. Rohid Rivaldi | UI Login Awal, Integrasi AI Chatbot & WhatsApp Gateway |
-| **WDC183B6Y0032** | Anwar Fauzi | UI Riwayat & Input Transaksi, Ekspor Laporan Keuangan |
-| **WDC244B6Y0036** | Nathanael Chandra Kusuma | UI Dashboard Keuangan Awal, Arsitektur Basis Data Supabase |
+| ID Peserta | Nama | Learning Path | Peran & Kontribusi Utama |
+| :--- | :--- | :--- | :--- |
+| **WDC480B6Y0021** | M. Rohid Rivaldi | Web Development | UI Login, AI Chatbot, Integrasi WhatsApp |
+| **WDC183B6Y0032** | Anwar Fauzi | Web Development | UI Riwayat & Input Transaksi, Ekspor Laporan |
+| **WDC244B6Y0036** | Nathanael Chandra Kusuma | Web Development | UI Dashboard Keuangan, Arsitektur Database |
+| **WDC007B6Y0030** | Bangkit Agung Nugroho | Web Development | UI Dashboard Inventory, Decision Support |
 
 ### 🎓 Pembimbing & Fasilitator
 * **Fasilitator**: Rotua Eka Wati Br. Sitorus (*Web Development Learning Path*)
@@ -45,8 +45,8 @@ Pembaruan besar yang diimplementasikan pada branch pembaruan ini meliputi:
 ┌────────────────────────────────────────────────────────────────────────┐
 │                   IKHTISAR PEMBARUAN UTAMA (UPDATE)                   │
 ├───────────────────────┬────────────────────────────────────────────────┤
-│ 🎨 UI Redesign Total  │ Tampilan "UI BAGUS" modern, aurora mesh glow,  │
-│                       │ Bento Grid interaktif, & mikro-interaksi halus │
+│ 🎨 UI Redesign Total  │ Tampilan UI yang ditingkatkan, aurora mesh     │
+│                       │ glow, Bento Grid interaktif, & mikro-interaksi │
 ├───────────────────────┼────────────────────────────────────────────────┤
 │ 🎮 Mode "Coba Demo"   │ Akses dasbor instan tanpa perlu daftar/login & │
 │                       │ tanpa backend (emulasi in-memory sessionStorage)│
@@ -71,7 +71,7 @@ Pembaruan besar yang diimplementasikan pada branch pembaruan ini meliputi:
 └───────────────────────┴────────────────────────────────────────────────┘
 ```
 
-1. **Desain Landing Page "UI BAGUS" Modern**:
+1. **Desain Landing Page Modern (UI yang Ditingkatkan)**:
    - Tampilan hero section dengan aurora glowing effect dan partikel interaktif.
    - Komponen showcase Bento Grid dinamis dengan kartu berorientasi fitur.
    - Transisi dark mode yang mulus tanpa kedip (*anti-FOUC*), warna border indigo glow, dan kontras teks yang nyaman di mata.
@@ -186,7 +186,7 @@ Ledgerly dibangun dengan arsitektur **Pure Decoupled SPA & Multi-Page Applicatio
 
 ```
 ledgerly/
-├── index.html                  # Landing page utama (Desain Aurora UI BAGUS)
+├── index.html                  # Landing page utama (Desain Aurora, UI yang ditingkatkan)
 ├── login.html                  # Halaman masuk (+ Google OAuth & Turnstile)
 ├── register.html               # Halaman pendaftaran akun baru
 ├── konfirmasi.html             # Halaman instruksi konfirmasi email
@@ -392,9 +392,9 @@ Perjalanan pengembangan Ledgerly terbagi menjadi empat fase utama:
 * Integrasi Cloudflare Turnstile CAPTCHA dan login ber-gate Google OAuth (`2d336ef`, `06d9202`).
 * Baseline komitmen tim stabil pada repositori induk [`Kyrozu/Ledgerly:main`](https://github.com/Kyrozu/Ledgerly/tree/main) (`766fbfd`).
 
-### 🔹 Fase 4: Peningkatan Tampilan ("UI BAGUS"), Fitur Baru, & Demo Mode *(Enhanced by Bangkit)*
+### 🔹 Fase 4: Peningkatan Tampilan (UI yang Ditingkatkan), Fitur Baru, & Demo Mode *(Enhanced by Bangkit)*
 * **Pindah Konfigurasi Supabase Mandiri**: Penyediaan skema SQL terstruktur idempotent di [`supabase_schema.sql`](supabase_schema.sql) (`11d3b63`).
-* **Redesain Total "UI BAGUS"**: Transformasi visual landing page dengan aurora mesh background, kartu bento grid, dan interaksi dinamis (`72588c2`).
+* **Redesain Antarmuka (UI yang Ditingkatkan)**: Transformasi visual landing page dengan aurora mesh background, kartu bento grid, dan interaksi dinamis (`72588c2`).
 * **Mode "Coba Demo" (Offline / Zero Backend)**: Emulasi database in-memory berbasis sessionStorage di [`js/demo.js`](js/demo.js) sehingga siapa pun dapat langsung mencoba aplikasi tanpa registrasi (`52502a8`).
 * **Halaman Konfirmasi Email**: Penambahan [`konfirmasi.html`](konfirmasi.html) untuk alur onboarding pendaftaran akun (`11d3b63`).
 * **Halaman Beranda Baru (Store Overview)**: Desain kartu hero, gauge performa, dan sparkline grafik 14 hari di [`js/pages/beranda.js`](js/pages/beranda.js) (`d325c52`).
