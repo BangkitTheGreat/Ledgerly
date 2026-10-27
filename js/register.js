@@ -256,6 +256,9 @@ async function handleRegister(e) {
         password: password,
         options: {
           captchaToken: captchaToken,
+          // link konfirmasi email balik ke origin tempat daftar (localhost / vercel),
+          // bukan Site URL default supabase. origin ini wajib ada di Redirect URLs.
+          emailRedirectTo: window.location.origin + '/konfirmasi.html',
           data: {
             nama: name,
             bisnis: bisnis,
@@ -285,16 +288,9 @@ async function handleRegister(e) {
           console.warn("Gagal menyisipkan profil pengguna baru ke tabel Users:", profileError.message);
         }
         
-        // Tampilkan notifikasi sukses
-        errDiv.innerHTML = '<strong>Pendaftaran berhasil!</strong> 🎉 Silakan cek kotak masuk email Anda (<strong>' + email + '</strong>) untuk melakukan konfirmasi pendaftaran sebelum masuk ke sistem.';
-        errDiv.style.display = 'block';
-        errDiv.style.color = 'var(--emerald-700)';
-        errDiv.style.borderColor = 'var(--emerald-200)';
-        errDiv.style.background = 'var(--emerald-50)';
-        
-        // Reset form & indikator kekuatan
-        document.getElementById('form-register').reset();
-        validatePasswordStrength();
+        // Pindah ke halaman "cek email". email dititip di sessionStorage (bukan URL)
+        try { sessionStorage.setItem('ledgerly_email_daftar', email); } catch (e) {}
+        window.location.href = 'konfirmasi.html';
       } else {
         throw new Error('Respons pendaftaran Supabase tidak valid.');
       }
