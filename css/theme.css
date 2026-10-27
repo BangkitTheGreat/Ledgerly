@@ -624,10 +624,17 @@ html[data-theme="dark"] .section-testimoni::before,
 html[data-theme="dark"] .section-faq::before {
   background: none;
 }
-html[data-theme="dark"] .section-fitur,
-html[data-theme="dark"] .section-testimoni,
-html[data-theme="dark"] .section-faq {
+html[data-theme="dark"] .section-fitur {
   background: linear-gradient(to bottom, #0f172a 0, #141d36 180px, #141d36 calc(100% - 180px), #0f172a 100%);
+}
+/* testimoni -> faq: dua2nya section terang, jadi turun ke jembatan gelap
+   malah keliatan kyk lekukan pembatas. di sini cuma turun tipis (#121a32)
+   & lebih panjang (240px) biar nyaris gak kerasa */
+html[data-theme="dark"] .section-testimoni {
+  background: linear-gradient(to bottom, #0f172a 0, #141d36 180px, #141d36 calc(100% - 240px), #121a32 100%);
+}
+html[data-theme="dark"] .section-faq {
+  background: linear-gradient(to bottom, #121a32 0, #141d36 240px, #141d36 calc(100% - 180px), #0f172a 100%);
 }
 
 /* shape kaca di hero: glow putih 0.7 kebaca halus di bg terang, tapi di bg
