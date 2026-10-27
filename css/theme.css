@@ -525,3 +525,32 @@ html[data-theme="dark"] .mockup-sync {
 html[data-theme="dark"] .mockup-product-row {
   border-color: var(--slate-200);
 }
+/* =============================================
+   Landing redesign (UI BAGUS): bento, hero pill, faq capsule
+   class baru ini pakai bg putih literal -> tanpa override, teks terang
+   (hasil flip slate) numpuk di atas kartu putih & gak kebaca.
+   ============================================= */
+html[data-theme="dark"] .bento-card {
+  background: var(--surface);
+}
+html[data-theme="dark"] .hero-badge-beam {
+  background: rgba(30, 41, 59, 0.8);
+}
+html[data-theme="dark"] .btn-hero-pill-secondary,
+html[data-theme="dark"] .social-proof {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+/* bg-nya var(--slate-900) -> ke-flip jadi terang, teks #fff jadi gak kebaca.
+   pakai indigo biar tetap jadi CTA utama yg menonjol di bg gelap */
+html[data-theme="dark"] .hero-glow-btn {
+  background: var(--indigo-600);
+}
+html[data-theme="dark"] .faq-intro-capsule {
+  background: rgba(30, 41, 59, 0.88);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: var(--slate-700);
+}
+html[data-theme="dark"] .section-label {
+  color: #a5b4fc; /* indigo-300: indigo-600 kontrasnya kurang di bg gelap */
+}

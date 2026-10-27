@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ledgerly — Sistem Manajemen Inventori & Keuangan UMKM</title>
-  <meta name="description" content="Kelola inventaris dan keuangan toko Anda dengan mudah. Dashboard real-time, laporan otomatis, notifikasi WhatsApp, dan chatbot AI.">
+  <meta name="description"
+    content="Kelola inventaris dan keuangan toko Anda dengan mudah. Dashboard real-time, laporan otomatis, notifikasi WhatsApp, dan chatbot AI.">
   <link rel="canonical" href="https://ledgerly.my.id/">
   <meta name="keywords" content="aplikasi inventaris UMKM, manajemen stok, laporan keuangan toko, kasir digital, chatbot AI bisnis, software UMKM Indonesia">
   <meta name="author" content="Tim TP-G007 — Dicoding">
@@ -43,17 +45,18 @@
     }
   }
   </script>
-
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/landing.css">
-  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
   <link rel="stylesheet" href="css/theme.css">
   <script>(function(){try{if(localStorage.getItem('ledgerly_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
 </head>
+
 <body>
 
   <!-- navbar -->
@@ -78,7 +81,10 @@
         <a href="login.html" class="nav-btn-login">Masuk</a>
         <a href="register.html" class="nav-btn-cta">
           Mulai Gratis
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
         </a>
       </div>
       <button class="nav-tema-toggle nav-tema-toggle-mobile js-tema-toggle" type="button" aria-label="Ganti Tema"></button>
@@ -88,7 +94,7 @@
         <span></span>
       </button>
     </div>
-    
+
     <div class="mobile-menu" id="overlay-menu">
       <div class="mobile-menu-links">
         <a href="#fitur">Fitur</a>
@@ -99,60 +105,103 @@
         <a href="login.html" class="mobile-menu-btn-login">Masuk</a>
         <a href="register.html" class="mobile-menu-btn-cta">
           Mulai Gratis
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
         </a>
       </div>
     </div>
   </nav>
 
-  <!-- landmark main biar a11y: konten utama dibungkus <main> -->
-  <main>
-
   <!-- hero section -->
   <section class="hero">
-    <div class="hero-glow"></div>
+    <div class="hero-bg-blur"></div>
+
+    <div class="hero-shapes">
+      <div class="shape-wrapper shape-1">
+        <div class="elegant-shape shape-indigo" style="width: 600px; height: 140px;"></div>
+      </div>
+      <div class="shape-wrapper shape-2">
+        <div class="elegant-shape shape-rose" style="width: 500px; height: 120px;"></div>
+      </div>
+      <div class="shape-wrapper shape-3">
+        <div class="elegant-shape shape-violet" style="width: 300px; height: 80px;"></div>
+      </div>
+      <div class="shape-wrapper shape-4">
+        <div class="elegant-shape shape-amber" style="width: 200px; height: 60px;"></div>
+      </div>
+      <div class="shape-wrapper shape-5">
+        <div class="elegant-shape shape-cyan" style="width: 150px; height: 40px;"></div>
+      </div>
+    </div>
+
     <div class="hero-inner">
-      <div class="hero-badge animate-fade-in-up">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
-        Platform Bisnis UMKM #1 di Indonesia
+      <div class="hero-geo-content">
+        <div class="hero-badge-beam animate-fade-in-up">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--slate-600)" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <span class="badge-text">Platform Bisnis UMKM #1 di Indonesia</span>
+        </div>
+
+        <h1 class="hero-title-beam animate-fade-in-up delay-100">
+          <span class="sparkles-wrapper" id="hero-heading">
+            <span class="teks-hitam">Kelola <span class="text-gradient-solid">Inventaris & Keuangan</span></span>
+            <br>
+            <span class="teks-hitam">Toko Anda dengan Cerdas</span>
+          </span>
+        </h1>
+
+        <p class="hero-desc-beam animate-fade-in-up delay-200">
+          Sistem terintegrasi untuk monitoring stok real-time, laporan keuangan otomatis, notifikasi WhatsApp, dan
+          rekomendasi bisnis berbasis data — semua dalam satu dashboard.
+        </p>
+
+        <div class="hero-cta animate-fade-in-up delay-300">
+          <div class="hero-glow-btn-wrapper group">
+            <div class="hero-glow-btn-bg"></div>
+            <a href="register.html" class="hero-glow-btn">
+              Mulai Gratis Sekarang
+              <svg viewBox="0 0 10 10" height="12" width="12" fill="none" class="glow-arrow">
+                <path d="M0 5h7" class="arrow-line" stroke="currentColor" stroke-width="1.5"></path>
+                <path d="M1 1l4 4-4 4" class="arrow-head" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+            </a>
+          </div>
+          <a href="#fitur" class="btn-hero-pill-secondary">
+            Lihat Fitur
+          </a>
+        </div>
+
+        <div class="hero-trust-geo animate-fade-in-up delay-400">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            Gratis selamanya
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            Tanpa kartu kredit
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            Setup 5 menit
+          </span>
+        </div>
       </div>
 
-      <h1 class="animate-fade-in-up delay-100">
-        Kelola <span class="gradient-text">Inventaris & Keuangan</span> Toko Anda dengan Cerdas
-      </h1>
-
-      <p class="hero-desc animate-fade-in-up delay-200">
-        Sistem terintegrasi untuk monitoring stok real-time, laporan keuangan otomatis, notifikasi WhatsApp, dan rekomendasi bisnis berbasis data — semua dalam satu dashboard.
-      </p>
-
-      <div class="hero-cta animate-fade-in-up delay-300">
-        <a href="register.html" class="btn-hero-primary">
-          Mulai Gratis Sekarang
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-        <a href="#fitur" class="btn-hero-secondary">
-          Lihat Fitur
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="m8 12 4 4 4-4"/></svg>
-        </a>
-      </div>
-
-      <div class="hero-trust">
-        <span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-          Gratis selamanya
-        </span>
-        <span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-          Tanpa kartu kredit
-        </span>
-        <span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-          Setup 5 menit
-        </span>
-      </div>
-
-      <!-- mockup dashboard (dekoratif aja, sembunyiin dr screen reader & audit kontras) -->
-      <div class="mockup-wrapper animate-float" aria-hidden="true">
+      <!-- mockup dashboard -->
+      <div class="mockup-wrapper animate-float">
         <div class="mockup-fade"></div>
         <div class="mockup-frame">
           <div class="mockup-toolbar">
@@ -162,7 +211,7 @@
                 <span class="mockup-dot" style="background:#f59e0b;"></span>
                 <span class="mockup-dot" style="background:#22c55e;"></span>
               </div>
-              <span class="mockup-url">ledgerly.my.id/dasbor</span>
+              <span class="mockup-url">ledgerly.vercel.app/dasbor</span>
             </div>
             <div class="mockup-sync">
               <span class="mockup-sync-dot"></span>
@@ -174,12 +223,12 @@
             <div class="mockup-stat">
               <div class="label">Total Omzet</div>
               <div class="val">Rp38,9jt</div>
-              <div class="sub" style="color:var(--emerald-700);">↑ 12.5% vs bulan lalu</div>
+              <div class="sub" style="color:var(--emerald-600);">↑ 12.5% vs bulan lalu</div>
             </div>
             <div class="mockup-stat">
               <div class="label">Laba Bersih</div>
               <div class="val">Rp11,2jt</div>
-              <div class="sub" style="color:var(--emerald-700);">↑ 8.3%</div>
+              <div class="sub" style="color:var(--emerald-600);">↑ 8.3%</div>
             </div>
             <div class="mockup-stat">
               <div class="label">Total SKU</div>
@@ -189,7 +238,7 @@
             <div class="mockup-stat">
               <div class="label">Peringatan Stok</div>
               <div class="val" style="color:var(--amber-600);">4</div>
-              <div class="sub" style="color:var(--rose-700);">Perlu restock segera</div>
+              <div class="sub" style="color:var(--rose-600);">Perlu restock segera</div>
             </div>
           </div>
 
@@ -225,14 +274,18 @@
             <div class="mockup-ai-card">
               <div>
                 <div class="ai-label">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                  </svg>
                   AI INSIGHT
                 </div>
-                <div class="ai-text">"Stok Teh Botol Sosro menipis (18 unit). Berdasarkan tren penjualan, disarankan restock 100 unit dalam 3 hari ke depan."</div>
+                <div class="ai-text">"Stok Teh Botol Sosro menipis (18 unit). Berdasarkan tren penjualan, disarankan
+                  restock 100 unit dalam 3 hari ke depan."</div>
               </div>
               <div class="ai-footer">
-                <span>Gemini AI</span>
-                <span class="ai-accuracy">Akurasi 94%</span>
+                <span>Ledgerly AI</span>
+                <span class="ai-accuracy">Akurasi 100%</span>
               </div>
             </div>
           </div>
@@ -259,6 +312,7 @@
         </div>
       </div>
     </div>
+    <div class="hero-bottom-fade"></div>
   </section>
 
   <!-- fitur section -->
@@ -267,97 +321,142 @@
       <div class="section-label">Fitur Unggulan</div>
       <h2 class="section-heading scroll-reveal">Semua yang Anda Butuhkan untuk Mengelola Toko</h2>
       <p class="section-desc scroll-reveal">
-        Dari monitoring stok sampai laporan keuangan otomatis — Ledgerly dirancang khusus untuk kebutuhan UMKM Indonesia.
+        Dari monitoring stok sampai laporan keuangan otomatis — Ledgerly dirancang khusus untuk kebutuhan UMKM
+        Indonesia.
       </p>
 
-      <div class="fitur-grid">
-        <!-- fitur 1 -->
-        <div class="fitur-card scroll-reveal">
-          <div>
-            <div class="fitur-icon" style="background:linear-gradient(135deg,var(--indigo-100),var(--indigo-50)); color:var(--indigo-600);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
+      <div class="bento-grid">
+        <!-- fitur 1: Laporan Keuangan (span 4) -->
+        <div class="bento-card bento-span-4 bento-horizontal scroll-reveal">
+          <div class="bento-card-content">
+            <div class="bento-graphic bento-graphic-1" style="color:var(--emerald-500); width:100%; height:120px;">
+              <svg class="absolute inset-0" style="width:100%; height:100%; opacity:0.15;" viewBox="0 0 254 104"
+                fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M112.891 97.7022C140.366 97.0802 171.004 94.6715 201.087 87.5116C210.43 85.2881 219.615 82.6412 228.284 78.2473C232.198 76.3179 235.905 73.9942 239.348 71.3124C241.85 69.2557 243.954 66.7571 245.555 63.9408C249.34 57.3235 248.281 50.5341 242.498 45.6109C239.033 42.7237 235.228 40.2703 231.169 38.3054C219.443 32.7209 207.141 28.4382 194.482 25.534C184.013 23.1927 173.358 21.7755 162.64 21.2989C161.376 21.3512 160.113 21.181 158.908 20.796C158.034 20.399 156.857 19.1682 156.962 18.4535C157.115 17.8927 157.381 17.3689 157.743 16.9139C158.104 16.4588 158.555 16.0821 159.067 15.8066C160.14 15.4683 161.274 15.3733 162.389 15.5286C179.805 15.3566 196.626 18.8373 212.998 24.462C220.978 27.2494 228.798 30.4747 236.423 34.1232C240.476 36.1159 244.202 38.7131 247.474 41.8258C254.342 48.2578 255.745 56.9397 251.841 65.4892C249.793 69.8582 246.736 73.6777 242.921 76.6327C236.224 82.0192 228.522 85.4602 220.502 88.2924C205.017 93.7847 188.964 96.9081 172.738 99.2109C153.442 101.949 133.993 103.478 114.506 103.79C91.1468 104.161 67.9334 102.97 45.1169 97.5831C36.0094 95.5616 27.2626 92.1655 19.1771 87.5116C13.839 84.5746 9.1557 80.5802 5.41318 75.7725C-0.54238 67.7259 -1.13794 59.1763 3.25594 50.2827C5.82447 45.3918 9.29572 41.0315 13.4863 37.4319C24.2989 27.5721 37.0438 20.9681 50.5431 15.7272C68.1451 8.8849 86.4883 5.1395 105.175 2.83669C129.045 0.0992292 153.151 0.134761 177.013 2.94256C197.672 5.23215 218.04 9.01724 237.588 16.3889C240.089 17.3418 242.498 18.5197 244.933 19.6446C246.627 20.4387 247.725 21.6695 246.997 23.615C246.455 25.1105 244.814 25.5605 242.63 24.5811C230.322 18.9961 217.233 16.1904 204.117 13.4376C188.761 10.3438 173.2 8.36665 157.558 7.52174C129.914 5.70776 102.154 8.06792 75.2124 14.5228C60.6177 17.8788 46.5758 23.2977 33.5102 30.6161C26.6595 34.3329 20.4123 39.0673 14.9818 44.658C12.9433 46.8071 11.1336 49.1622 9.58207 51.6855C4.87056 59.5336 5.61172 67.2494 11.9246 73.7608C15.2064 77.0494 18.8775 79.925 22.8564 82.3236C31.6176 87.7101 41.3848 90.5291 51.3902 92.5804C70.6068 96.5773 90.0219 97.7419 112.891 97.7022Z"
+                  fill="currentColor" />
+              </svg>
+              <div class="text-overlay"
+                style="position:absolute; font-size:36px; font-weight:800; color:var(--emerald-600);">Auto</div>
             </div>
-            <h3>Dashboard Inventaris</h3>
-            <p>Monitoring stok secara real-time dengan visualisasi grafik. Peringatan otomatis saat stok di bawah batas minimum. Setiap produk punya QR Code unik untuk identifikasi cepat, plus filter & pencarian instan.</p>
-          </div>
-          <div class="fitur-footer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            Real-time monitoring
+            <div class="bento-text">
+              <h4>Laporan Keuangan</h4>
+              <p>Laporan laba rugi otomatis, grafik tren penjualan, dan arus kas bulanan. Pilih periode laporan dengan
+                fleksibel (7/30/60 hari).</p>
+            </div>
           </div>
         </div>
 
-        <!-- fitur 2 -->
-        <div class="fitur-card scroll-reveal delay-100">
-          <div>
-            <div class="fitur-icon" style="background:linear-gradient(135deg,var(--emerald-100, #d1fae5),var(--emerald-50)); color:var(--emerald-600);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        <!-- fitur 2: Cloud Database (span 2) -->
+        <div class="bento-card bento-span-2 scroll-reveal delay-100">
+          <div class="bento-card-content">
+            <div class="bento-graphic">
+              <div class="bg-graphic-circle">
+                <svg class="m-auto" style="width:72px; height:auto; color:var(--sky-400);" viewBox="0 0 212 143"
+                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M44.0209 55.3542C43.1945 54.7639 42.6916 54.0272 42.5121 53.1442C42.3327 52.2611 42.5995 51.345 43.3125 50.3958C50.632 40.3611 59.812 32.5694 70.8525 27.0208C81.8931 21.4722 93.668 18.6979 106.177 18.6979C118.691 18.6979 130.497 21.3849 141.594 26.7587C152.691 32.1326 161.958 39.8936 169.396 50.0417C170.222 51.1042 170.489 52.0486 170.196 52.875C169.904 53.7014 169.401 54.4097 168.688 55C167.979 55.5903 167.153 55.8571 166.208 55.8004C165.264 55.7437 164.438 55.2408 163.729 54.2917C157.236 45.0833 148.885 38.0307 138.675 33.1337C128.466 28.2368 117.633 25.786 106.177 25.7812C94.7257 25.7812 83.9827 28.2321 73.948 33.1337C63.9132 38.0354 55.5903 45.0881 48.9792 54.2917C48.2709 55.3542 47.4445 55.9444 46.5 56.0625C45.5556 56.1806 44.7292 55.9444 44.0209 55.3542ZM126.188 142.656C113.91 139.587 103.875 133.476 96.0834 124.325C88.2917 115.173 84.3959 103.988 84.3959 90.7708C84.3959 84.8681 86.5209 79.9097 90.7709 75.8958C95.0209 71.8819 100.156 69.875 106.177 69.875C112.198 69.875 117.333 71.8819 121.583 75.8958C125.833 79.9097 127.958 84.8681 127.958 90.7708C127.958 94.6667 129.434 97.9439 132.385 100.602C135.337 103.261 138.819 104.588 142.833 104.583C146.847 104.583 150.271 103.256 153.104 100.602C155.938 97.9486 157.354 94.6714 157.354 90.7708C157.354 77.0764 152.337 65.566 142.302 56.2396C132.267 46.9132 120.285 42.25 106.354 42.25C92.4237 42.25 80.441 46.9132 70.4063 56.2396C60.3716 65.566 55.3542 77.0174 55.3542 90.5937C55.3542 93.4271 55.621 96.9687 56.1546 101.219C56.6882 105.469 57.9562 110.427 59.9584 116.094C60.3125 117.156 60.2842 118.101 59.8734 118.927C59.4625 119.753 58.7825 120.344 57.8334 120.698C56.8889 121.052 55.9752 121.024 55.0921 120.613C54.2091 120.202 53.5881 119.522 53.2292 118.573C51.4584 113.969 50.1905 109.395 49.4255 104.853C48.6605 100.31 48.2756 95.6158 48.2709 90.7708C48.2709 75.0694 53.9682 61.9062 65.363 51.2812C76.7577 40.6562 90.3624 35.3437 106.177 35.3437C122.115 35.3437 135.809 40.6562 147.26 51.2812C158.712 61.9062 164.438 75.0694 164.438 90.7708C164.438 96.6736 162.343 101.601 158.155 105.554C153.966 109.506 148.859 111.485 142.833 111.49C136.813 111.49 131.649 109.513 127.342 105.561C123.035 101.608 120.88 96.6783 120.875 90.7708C120.875 86.875 119.43 83.5978 116.54 80.9392C113.65 78.2805 110.196 76.9536 106.177 76.9583C102.163 76.9583 98.7089 78.2876 95.8142 80.9462C92.9195 83.6049 91.4745 86.8797 91.4792 90.7708C91.4792 102.222 94.8745 111.785 101.665 119.458C108.456 127.132 117.22 132.503 127.958 135.573C129.021 135.927 129.729 136.517 130.083 137.344C130.438 138.17 130.497 139.056 130.26 140C130.024 140.826 129.552 141.535 128.844 142.125C128.135 142.715 127.25 142.892 126.188 142.656ZM67.0417 18.3437C66.0973 18.934 65.1528 19.0828 64.2084 18.79C63.2639 18.4972 62.5556 17.8762 62.0834 16.9271C61.6112 15.9826 61.4931 15.1279 61.7292 14.3629C61.9653 13.5979 62.5556 12.9179 63.5 12.3229C70.1112 8.78125 77.0174 6.06597 84.2188 4.17708C91.4202 2.28819 98.7396 1.34375 106.177 1.34375C113.733 1.34375 121.111 2.25986 128.313 4.09208C135.514 5.92431 142.479 8.54986 149.208 11.9687C150.271 12.559 150.892 13.2674 151.071 14.0937C151.251 14.9201 151.161 15.7465 150.802 16.5729C150.448 17.3993 149.858 18.0486 149.031 18.5208C148.205 18.9931 147.201 18.934 146.021 18.3437C139.764 15.1563 133.299 12.7078 126.627 10.9983C119.954 9.28889 113.138 8.43181 106.177 8.42708C99.3299 8.42708 92.6007 9.22514 85.9896 10.8212C79.3785 12.4174 73.0625 14.9249 67.0417 18.3437ZM87.9375 140.177C80.9723 132.858 75.6314 125.392 71.915 117.78C68.1987 110.167 66.3381 101.164 66.3334 90.7708C66.3334 80.0278 70.2292 70.9658 78.0209 63.585C85.8125 56.2042 95.198 52.5161 106.177 52.5208C117.156 52.5208 126.601 56.2112 134.51 63.5921C142.42 70.9729 146.375 80.0325 146.375 90.7708C146.375 91.8333 146.052 92.6904 145.405 93.3421C144.758 93.9937 143.901 94.3172 142.833 94.3125C141.889 94.3125 141.063 93.989 140.354 93.3421C139.646 92.6951 139.292 91.8381 139.292 90.7708C139.292 81.9167 136.014 74.5099 129.46 68.5504C122.906 62.591 115.145 59.6089 106.177 59.6042C97.2049 59.6042 89.503 62.5862 83.0713 68.5504C76.6396 74.5146 73.4214 81.9214 73.4167 90.7708C73.4167 100.333 75.0695 108.451 78.375 115.123C81.6806 121.796 86.5209 128.494 92.8959 135.219C93.6042 135.927 93.9584 136.753 93.9584 137.698C93.9584 138.642 93.6042 139.469 92.8959 140.177C92.1875 140.885 91.3612 141.24 90.4167 141.24C89.4723 141.24 88.6459 140.885 87.9375 140.177ZM141.417 128.135C130.91 128.135 121.789 124.594 114.054 117.51C106.319 110.427 102.454 101.514 102.458 90.7708C102.458 89.8264 102.784 89 103.436 88.2917C104.088 87.5833 104.942 87.2292 106 87.2292C107.063 87.2292 107.92 87.5833 108.571 88.2917C109.223 89 109.546 89.8264 109.542 90.7708C109.542 99.625 112.729 106.885 119.104 112.552C125.479 118.219 132.917 121.052 141.417 121.052C142.125 121.052 143.129 120.993 144.427 120.875C145.726 120.757 147.083 120.58 148.5 120.344C149.563 120.108 150.479 120.256 151.248 120.79C152.018 121.324 152.519 122.119 152.75 123.177C152.986 124.122 152.809 124.948 152.219 125.656C151.629 126.365 150.861 126.837 149.917 127.073C147.792 127.663 145.934 127.989 144.342 128.05C142.751 128.112 141.776 128.14 141.417 128.135Z"
+                    fill="currentColor" />
+                </svg>
+              </div>
             </div>
-            <h3>Laporan Keuangan</h3>
-            <p>Laporan laba rugi otomatis, grafik tren penjualan, dan arus kas bulanan. Pilih periode laporan dengan fleksibel (7/30/60 hari).</p>
-          </div>
-          <div class="fitur-footer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            Otomatis tergenerate
+            <div class="bento-text">
+              <h4>Cloud Database</h4>
+              <p>Data tersimpan aman di cloud Supabase dengan Row-Level Security. Akses dari mana saja, kapan saja.</p>
+            </div>
           </div>
         </div>
 
-        <!-- fitur 3 -->
-        <div class="fitur-card scroll-reveal delay-200">
-          <div>
-            <div class="fitur-icon" style="background:linear-gradient(135deg,var(--purple-100, #f3e8ff),var(--purple-50, #faf5ff)); color:var(--purple-600);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        <!-- fitur 3: Dashboard Inventaris (span 2) -->
+        <div class="bento-card bento-span-2 scroll-reveal">
+          <div class="bento-card-content">
+            <div class="bento-graphic" style="margin-bottom:16px;">
+              <svg style="width:100%; color:var(--indigo-300);" viewBox="0 0 386 123" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect width="386" height="123" rx="10" fill="var(--slate-100)" />
+                <circle cx="29" cy="29" r="15" fill="currentColor" />
+                <path d="M29 23V35" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M35 29L29 35L23 29" stroke="white" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <rect x="55" y="24" width="60" height="8" rx="4" fill="currentColor" opacity="0.5" />
+                <rect x="125" y="24" width="40" height="8" rx="4" fill="currentColor" opacity="0.3" />
+                <rect x="55" y="44" width="100" height="6" rx="3" fill="currentColor" opacity="0.2" />
+                <rect x="55" y="56" width="80" height="6" rx="3" fill="currentColor" opacity="0.2" />
+                <rect x="55" y="68" width="120" height="6" rx="3" fill="currentColor" opacity="0.2" />
+              </svg>
             </div>
-            <h3>Chatbot AI</h3>
-            <p>Input stok dan cek data lewat chat maupun perintah suara (voice input). Tanya "berapa stok Aqua?", "tambah 50 Indomie masuk", atau minta rekomendasi bisnis — chatbot paham bahasa natural!</p>
-          </div>
-          <div class="fitur-footer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            Powered by Gemini AI
+            <div class="bento-text">
+              <h4>Dashboard Inventaris</h4>
+              <p>Monitoring stok secara real-time dengan visualisasi grafik & peringatan otomatis.</p>
+            </div>
           </div>
         </div>
 
-        <!-- fitur 4 -->
-        <div class="fitur-card scroll-reveal">
-          <div>
-            <div class="fitur-icon" style="background:linear-gradient(135deg,var(--rose-100),var(--rose-50)); color:var(--rose-600);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        <!-- fitur 4: Notifikasi WhatsApp (span 2) -->
+        <div class="bento-card bento-span-2 scroll-reveal delay-100">
+          <div class="bento-card-content">
+            <div class="bento-graphic">
+              <div class="bg-graphic-circle" style="border-color:var(--rose-200);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="color:var(--rose-500);">
+                  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                </svg>
+              </div>
             </div>
-            <h3>Notifikasi WhatsApp</h3>
-            <p>Alert otomatis langsung ke WhatsApp pemilik saat stok menipis di bawah batas minimum. Gak perlu cek manual terus-terusan.</p>
-          </div>
-          <div class="fitur-footer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            Notifikasi via WhatsApp
+            <div class="bento-text">
+              <h4>Notifikasi WhatsApp</h4>
+              <p>Alert otomatis langsung ke WhatsApp saat stok menipis di bawah minimum.</p>
+            </div>
           </div>
         </div>
 
-        <!-- fitur 5 -->
-        <div class="fitur-card scroll-reveal delay-100">
-          <div>
-            <div class="fitur-icon" style="background:linear-gradient(135deg,var(--amber-100, #fef3c7),var(--amber-50)); color:var(--amber-600);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M8 18v-2"/><path d="M12 18v-4"/><path d="M16 18v-6"/></svg>
+        <!-- fitur 5: Export Laporan (span 2) -->
+        <div class="bento-card bento-span-2 scroll-reveal delay-200">
+          <div class="bento-card-content">
+            <div class="bento-graphic">
+              <div class="bg-graphic-circle" style="border-color:var(--amber-200);">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="color:var(--amber-500);">
+                  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                  <path d="M8 18v-2" />
+                  <path d="M12 18v-4" />
+                  <path d="M16 18v-6" />
+                </svg>
+              </div>
             </div>
-            <h3>Export Laporan</h3>
-            <p>Unduh data inventaris dan transaksi ke CSV, Excel, atau PDF kapan saja. Cocok buat laporan ke partner bisnis atau arsip pribadi.</p>
-          </div>
-          <div class="fitur-footer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            PDF, CSV, Excel
+            <div class="bento-text">
+              <h4>Export Laporan</h4>
+              <p>Unduh data ke CSV, Excel, atau PDF kapan saja untuk sinkronisasi arsip.</p>
+            </div>
           </div>
         </div>
 
-        <!-- fitur 6 -->
-        <div class="fitur-card scroll-reveal delay-200">
-          <div>
-            <div class="fitur-icon" style="background:linear-gradient(135deg,var(--sky-100, #e0f2fe),var(--sky-50)); color:var(--sky-600);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+        <!-- fitur 6: Chatbot AI (span 6) -->
+        <div class="bento-card bento-span-6 bento-horizontal scroll-reveal">
+          <div class="bento-card-content">
+            <div class="bento-text">
+              <h4 style="color:var(--purple-600);">Chatbot AI Super Pintar</h4>
+              <p>Input stok dan cek data lewat percakapan natural. Tanya "berapa stok Aqua?" atau "tambah 50 Indomie
+                masuk" — AI kami memahaminya langsung tanpa banyak klik!</p>
             </div>
-            <h3>Cloud Database</h3>
-            <p>Data tersimpan aman di cloud Supabase dengan Row-Level Security. Akses dari mana saja, kapan saja. Backup otomatis berkala oleh infrastruktur cloud.</p>
-          </div>
-          <div class="fitur-footer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-            Powered by Supabase
+            <div class="bento-graphic"
+              style="display:flex; justify-content:flex-end; align-items:center; flex: 0 0 auto; padding-right: 16px;">
+              <div style="position:relative; display:flex; gap:12px; align-items:center;">
+                <div
+                  style="border: 2px solid var(--slate-200); padding:4px 12px; border-radius:12px; font-size:12px; font-weight:600; box-shadow:0 4px 6px rgba(0,0,0,0.05); background:var(--surface);">
+                  Ledgerly AI</div>
+                <div
+                  style="width:48px; height:48px; border-radius:50%; border:2px solid var(--purple-200); background:var(--purple-50); display:flex; align-items:center; justify-content:center;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="color:var(--purple-600);">
+                    <path
+                      d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -365,15 +464,21 @@
   </section>
 
   <!-- simulasi chatbot section -->
-  <section class="section-simulasi">
-    <div class="simulasi-glow top-right"></div>
-    <div class="simulasi-glow bottom-left"></div>
-    <div class="section-inner">
+  <section class="section-simulasi" id="simulasi-section">
+    <!-- Beams Background -->
+    <canvas id="beams-canvas"
+      style="position:absolute; inset:0; width:100%; height:100%; filter:blur(15px); pointer-events:none; z-index:0;"></canvas>
+    <div id="beams-overlay"
+      style="position:absolute; inset:0; background:rgba(15,23,42,0.05); backdrop-filter:blur(50px); pointer-events:none; z-index:1;">
+    </div>
+
+    <div class="section-inner" style="position:relative; z-index:10;">
       <div class="simulasi-grid">
         <div class="simulasi-left scroll-reveal">
           <span class="simulasi-badge">Cara Kerja</span>
           <h2>Kelola Toko Cukup Lewat Chat</h2>
-          <p>Dengan chatbot AI, kamu bisa input data, cek stok, dan dapatkan rekomendasi bisnis hanya lewat percakapan natural. Gak perlu buka banyak menu.</p>
+          <p>Dengan chatbot AI, kamu bisa input data, cek stok, dan dapatkan rekomendasi bisnis hanya lewat percakapan
+            natural. Gak perlu buka banyak menu.</p>
           <div>
             <div class="simulasi-step">
               <span class="num">1</span>
@@ -405,17 +510,28 @@
             </div>
             <div class="chat-messages" id="chat-demo-messages">
               <div class="chat-msg user">Berapa stok Indomie sekarang?</div>
-              <div class="chat-msg bot">Stok Indomie Goreng saat ini: <strong>320 unit</strong>. Stok aman, masih di atas batas minimum (80 unit). 👍</div>
+              <div class="chat-msg bot">Stok Indomie Goreng saat ini: <strong>320 unit</strong>. Stok aman, masih di
+                atas batas minimum (80 unit). 👍</div>
               <div class="chat-msg user">Tambah 50 Aqua masuk</div>
-              <div class="chat-msg bot">Berhasil! Stok Aqua Mineral 600ml bertambah <strong>50 unit</strong>. Total stok sekarang: <strong>290 unit</strong>. Transaksi tercatat otomatis. ✅</div>
+              <div class="chat-msg bot">Berhasil! Stok Aqua Mineral 600ml bertambah <strong>50 unit</strong>. Total stok
+                sekarang: <strong>290 unit</strong>. Transaksi tercatat otomatis. ✅</div>
             </div>
             <div class="chat-demo-input" style="display:flex; align-items:center; gap:8px;">
               <input type="text" placeholder="Ketik pesan..." disabled style="flex:1;">
-              <button disabled aria-label="Rekam suara (demo)" style="background:transparent; border:none; color:var(--text-muted); cursor:not-allowed; display:grid; place-items:center; padding:4px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+              <button disabled
+                style="background:transparent; border:none; color:var(--text-muted); cursor:not-allowed; display:grid; place-items:center; padding:4px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" x2="12" y1="19" y2="22" />
+                </svg>
               </button>
-              <button disabled aria-label="Kirim pesan (demo)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              <button disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m22 2-7 20-4-9-9-4Z" />
+                  <path d="M22 2 11 13" />
+                </svg>
               </button>
             </div>
           </div>
@@ -437,7 +553,7 @@
         <!-- starter -->
         <div class="harga-card scroll-reveal">
           <div>
-            <h3>Starter</h3>
+            <h4>Starter</h4>
             <p class="desc">Cocok untuk UMKM yang baru mulai digitalisasi. Fitur dasar untuk mengelola inventaris.</p>
             <div class="harga-price">
               <span class="amount">Gratis</span>
@@ -445,19 +561,31 @@
             </div>
             <ul class="harga-features">
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Hingga 50 produk
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Dashboard inventaris
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Ekspor CSV
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Chatbot AI (10 kueri/hari)
               </li>
             </ul>
@@ -469,7 +597,7 @@
         <div class="harga-card populer scroll-reveal delay-100">
           <span class="harga-badge-populer">Pilihan Terfavorit</span>
           <div>
-            <h3>Profesional</h3>
+            <h4>Profesional</h4>
             <p class="desc">Untuk toko dengan volume tinggi. Fitur lengkap termasuk WhatsApp dan laporan PDF.</p>
             <div class="harga-price">
               <span class="amount">Rp49rb</span>
@@ -477,65 +605,99 @@
             </div>
             <ul class="harga-features">
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Produk tak terbatas
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Laporan keuangan lengkap
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Ekspor PDF + Excel
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Notifikasi WhatsApp
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Chatbot AI unlimited
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Decision support
               </li>
             </ul>
           </div>
-          <a href="register.html" class="harga-btn primary">
+          <a href="login.html" class="harga-btn primary">
             Mulai 7 Hari Trial
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
           </a>
         </div>
 
         <!-- enterprise -->
         <div class="harga-card scroll-reveal delay-200">
           <div>
-            <h3>Enterprise</h3>
+            <h4>Enterprise</h4>
             <p class="desc">Untuk bisnis dengan banyak cabang. Kustomisasi integrasi dan dukungan prioritas.</p>
             <div class="harga-price">
               <span class="amount">Kustom</span>
             </div>
             <ul class="harga-features">
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Semua fitur Profesional
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Multi-cabang / multi-user
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Akses API
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
                 Dukungan khusus 24/7
               </li>
             </ul>
           </div>
-          <a href="https://wa.me/6285750917686?text=Halo%20Admin%20Ledgerly,%20saya%20tertarik%20dengan%20Paket%20Enterprise%20Kustom%20untuk%20multi-cabang." target="_blank" class="harga-btn secondary" id="cta-wa-sales">Hubungi Sales</a>
+          <a href="https://wa.me/6285750917686?text=Halo%20Admin%20Ledgerly,%20saya%20tertarik%20dengan%20Paket%20Enterprise%20Kustom%20untuk%20multi-cabang."
+            target="_blank" class="harga-btn secondary" id="cta-wa-sales">Hubungi Sales</a>
         </div>
       </div>
 
@@ -546,7 +708,7 @@
   </section>
 
   <!-- testimoni -->
-  <section class="section-testimoni">
+  <section class="section-testimoni" id="testimoni">
     <div class="section-inner" style="text-align:center;">
       <div class="section-label">Testimoni</div>
       <h2 class="section-heading scroll-reveal">Dipercaya oleh Ratusan Pemilik Usaha</h2>
@@ -554,64 +716,674 @@
         Lihat ulasan dari para mitra yang telah menggunakan Ledgerly untuk mempermudah operasional bisnis mereka.
       </p>
 
-      <div class="testimoni-grid">
-        <div class="testimoni-card scroll-reveal">
-          <div>
-            <div class="testimoni-stars">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="testimoni-marquee-container">
+
+        <!-- Kolom 1 -->
+        <div class="testimoni-column col-1">
+          <div class="testimoni-track">
+            <!-- Set 1 -->
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Sebelumnya saya mencatat stok di buku secara manual. Sekarang tinggal
+                  membuka dashboard, semua langsung terlihat jelas. Fitur notifikasi WhatsApp-nya juga sangat berguna
+                  untuk mengingatkan saat stok kritis!"</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">AF</div>
+                <div>
+                  <div class="name">Anwar Fauzi</div>
+                  <div class="biz">Toko Sembako Anwar, Surabaya</div>
+                </div>
+              </div>
             </div>
-            <p class="testimoni-quote">"Sebelumnya saya mencatat stok di buku secara manual. Sekarang tinggal membuka dashboard, semua langsung terlihat jelas. Fitur notifikasi WhatsApp-nya juga sangat berguna untuk mengingatkan saat stok kritis!"</p>
-          </div>
-          <div class="testimoni-author">
-            <div class="testimoni-avatar">AF</div>
-            <div>
-              <div class="name">Anwar Fauzi</div>
-              <div class="biz">Toko Sembako Anwar, Surabaya</div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Fitur asisten AI chatbot-nya sangat luar biasa. Cukup mengetik pesan biasa
+                  seperti menanyakan stok, asisten langsung menjawab dengan cepat. Rekan kerja saya di kedai juga bisa
+                  menggunakannya tanpa perlu pelatihan lama."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">NC</div>
+                <div>
+                  <div class="name">Nathanael Chandra Kusuma</div>
+                  <div class="biz">Kopi Chandra, Bandung</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Saya sangat menyukai fitur ekspor laporannya. Cukup dengan satu klik,
+                  laporan keuangan format PDF langsung terunduh dengan rapi dan siap dikirim ke rekan bisnis saya."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">BA</div>
+                <div>
+                  <div class="name">Bangkit Agung Nugroho</div>
+                  <div class="biz">Bangkit Tech, Jakarta</div>
+                </div>
+              </div>
+            </div>
+            <!-- Set 2 (Duplicate for infinite scroll) -->
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Sebelumnya saya mencatat stok di buku secara manual. Sekarang tinggal
+                  membuka dashboard, semua langsung terlihat jelas. Fitur notifikasi WhatsApp-nya juga sangat berguna
+                  untuk mengingatkan saat stok kritis!"</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">AF</div>
+                <div>
+                  <div class="name">Anwar Fauzi</div>
+                  <div class="biz">Toko Sembako Anwar, Surabaya</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Fitur asisten AI chatbot-nya sangat luar biasa. Cukup mengetik pesan biasa
+                  seperti menanyakan stok, asisten langsung menjawab dengan cepat. Rekan kerja saya di kedai juga bisa
+                  menggunakannya tanpa perlu pelatihan lama."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">NC</div>
+                <div>
+                  <div class="name">Nathanael Chandra Kusuma</div>
+                  <div class="biz">Kopi Chandra, Bandung</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Saya sangat menyukai fitur ekspor laporannya. Cukup dengan satu klik,
+                  laporan keuangan format PDF langsung terunduh dengan rapi dan siap dikirim ke rekan bisnis saya."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">BA</div>
+                <div>
+                  <div class="name">Bangkit Agung Nugroho</div>
+                  <div class="biz">Bangkit Tech, Jakarta</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="testimoni-card scroll-reveal delay-100">
-          <div>
-            <div class="testimoni-stars">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+
+        <!-- Kolom 2 -->
+        <div class="testimoni-column col-2">
+          <div class="testimoni-track">
+            <!-- Set 1 -->
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Fitur asisten AI chatbot-nya sangat luar biasa. Cukup mengetik pesan biasa
+                  seperti menanyakan stok, asisten langsung menjawab dengan cepat. Rekan kerja saya di kedai juga bisa
+                  menggunakannya tanpa perlu pelatihan lama."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">NC</div>
+                <div>
+                  <div class="name">Nathanael Chandra Kusuma</div>
+                  <div class="biz">Kopi Chandra, Bandung</div>
+                </div>
+              </div>
             </div>
-            <p class="testimoni-quote">"Fitur asisten AI chatbot-nya sangat luar biasa. Cukup mengetik pesan biasa seperti menanyakan stok, asisten langsung menjawab dengan cepat. Rekan kerja saya di kedai juga bisa menggunakannya tanpa perlu pelatihan lama."</p>
-          </div>
-          <div class="testimoni-author">
-            <div class="testimoni-avatar">NC</div>
-            <div>
-              <div class="name">Nathanael Chandra Kusuma</div>
-              <div class="biz">Kopi Chandra, Bandung</div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Saya sangat menyukai fitur ekspor laporannya. Cukup dengan satu klik,
+                  laporan keuangan format PDF langsung terunduh dengan rapi dan siap dikirim ke rekan bisnis saya."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">BA</div>
+                <div>
+                  <div class="name">Bangkit Agung Nugroho</div>
+                  <div class="biz">Bangkit Tech, Jakarta</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Sebelumnya saya mencatat stok di buku secara manual. Sekarang tinggal
+                  membuka dashboard, semua langsung terlihat jelas. Fitur notifikasi WhatsApp-nya juga sangat berguna
+                  untuk mengingatkan saat stok kritis!"</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">AF</div>
+                <div>
+                  <div class="name">Anwar Fauzi</div>
+                  <div class="biz">Toko Sembako Anwar, Surabaya</div>
+                </div>
+              </div>
+            </div>
+            <!-- Set 2 -->
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Fitur asisten AI chatbot-nya sangat luar biasa. Cukup mengetik pesan biasa
+                  seperti menanyakan stok, asisten langsung menjawab dengan cepat. Rekan kerja saya di kedai juga bisa
+                  menggunakannya tanpa perlu pelatihan lama."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">NC</div>
+                <div>
+                  <div class="name">Nathanael Chandra Kusuma</div>
+                  <div class="biz">Kopi Chandra, Bandung</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Saya sangat menyukai fitur ekspor laporannya. Cukup dengan satu klik,
+                  laporan keuangan format PDF langsung terunduh dengan rapi dan siap dikirim ke rekan bisnis saya."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">BA</div>
+                <div>
+                  <div class="name">Bangkit Agung Nugroho</div>
+                  <div class="biz">Bangkit Tech, Jakarta</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Sebelumnya saya mencatat stok di buku secara manual. Sekarang tinggal
+                  membuka dashboard, semua langsung terlihat jelas. Fitur notifikasi WhatsApp-nya juga sangat berguna
+                  untuk mengingatkan saat stok kritis!"</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">AF</div>
+                <div>
+                  <div class="name">Anwar Fauzi</div>
+                  <div class="biz">Toko Sembako Anwar, Surabaya</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="testimoni-card scroll-reveal delay-200">
-          <div>
-            <div class="testimoni-stars">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+
+        <!-- Kolom 3 -->
+        <div class="testimoni-column col-3">
+          <div class="testimoni-track">
+            <!-- Set 1 -->
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Saya sangat menyukai fitur ekspor laporannya. Cukup dengan satu klik,
+                  laporan keuangan format PDF langsung terunduh dengan rapi dan siap dikirim ke rekan bisnis saya."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">BA</div>
+                <div>
+                  <div class="name">Bangkit Agung Nugroho</div>
+                  <div class="biz">Bangkit Tech, Jakarta</div>
+                </div>
+              </div>
             </div>
-            <p class="testimoni-quote">"Saya sangat menyukai fitur ekspor laporannya. Cukup dengan satu klik, laporan keuangan format PDF langsung terunduh dengan rapi dan siap dikirim ke rekan bisnis saya."</p>
-          </div>
-          <div class="testimoni-author">
-            <div class="testimoni-avatar">BA</div>
-            <div>
-              <div class="name">Bangkit Agung Nugroho</div>
-              <div class="biz">Bangkit Tech, Jakarta</div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Sebelumnya saya mencatat stok di buku secara manual. Sekarang tinggal
+                  membuka dashboard, semua langsung terlihat jelas. Fitur notifikasi WhatsApp-nya juga sangat berguna
+                  untuk mengingatkan saat stok kritis!"</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">AF</div>
+                <div>
+                  <div class="name">Anwar Fauzi</div>
+                  <div class="biz">Toko Sembako Anwar, Surabaya</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Fitur asisten AI chatbot-nya sangat luar biasa. Cukup mengetik pesan biasa
+                  seperti menanyakan stok, asisten langsung menjawab dengan cepat. Rekan kerja saya di kedai juga bisa
+                  menggunakannya tanpa perlu pelatihan lama."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">NC</div>
+                <div>
+                  <div class="name">Nathanael Chandra Kusuma</div>
+                  <div class="biz">Kopi Chandra, Bandung</div>
+                </div>
+              </div>
+            </div>
+            <!-- Set 2 -->
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Saya sangat menyukai fitur ekspor laporannya. Cukup dengan satu klik,
+                  laporan keuangan format PDF langsung terunduh dengan rapi dan siap dikirim ke rekan bisnis saya."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">BA</div>
+                <div>
+                  <div class="name">Bangkit Agung Nugroho</div>
+                  <div class="biz">Bangkit Tech, Jakarta</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Sebelumnya saya mencatat stok di buku secara manual. Sekarang tinggal
+                  membuka dashboard, semua langsung terlihat jelas. Fitur notifikasi WhatsApp-nya juga sangat berguna
+                  untuk mengingatkan saat stok kritis!"</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">AF</div>
+                <div>
+                  <div class="name">Anwar Fauzi</div>
+                  <div class="biz">Toko Sembako Anwar, Surabaya</div>
+                </div>
+              </div>
+            </div>
+            <div class="testimoni-card">
+              <div>
+                <div class="testimoni-stars">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="testimoni-quote">"Fitur asisten AI chatbot-nya sangat luar biasa. Cukup mengetik pesan biasa
+                  seperti menanyakan stok, asisten langsung menjawab dengan cepat. Rekan kerja saya di kedai juga bisa
+                  menggunakannya tanpa perlu pelatihan lama."</p>
+              </div>
+              <div class="testimoni-author">
+                <div class="testimoni-avatar">NC</div>
+                <div>
+                  <div class="name">Nathanael Chandra Kusuma</div>
+                  <div class="biz">Kopi Chandra, Bandung</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -619,229 +1391,281 @@
   <!-- faq -->
   <section class="section-faq" id="faq">
     <div class="section-inner" style="text-align:center;">
-      <div class="section-label scroll-reveal">FAQ</div>
+      <div class="faq-intro-capsule scroll-reveal">
+        <span class="faq-intro__beam" aria-hidden="true"></span>
+        <span class="faq-intro__pulse" aria-hidden="true"></span>
+        <span class="faq-intro__label">FAQ</span>
+        <span class="faq-intro__meter" aria-hidden="true"></span>
+        <span class="faq-intro__tick" aria-hidden="true"></span>
+      </div>
       <h2 class="section-heading scroll-reveal">Pertanyaan yang Sering Diajukan</h2>
       <p class="section-desc scroll-reveal" style="margin-left:auto; margin-right:auto; margin-bottom:48px;">
         Belum menemukan jawaban? Hubungi tim kami langsung lewat WhatsApp.
       </p>
 
       <div class="faq-list">
-        <div class="faq-item scroll-reveal">
+        <div class="faq-item scroll-reveal" onmousemove="setCardGlow(event)" onmouseleave="clearCardGlow(event)">
+          <div class="faq-glow"></div>
           <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Apakah Ledgerly benar-benar gratis?</span>
-            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            <div class="faq-icon-wrap">
+              <div class="faq-icon-ping"></div>
+              <svg class="plus-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="faq-content-wrap">
+              <div class="faq-header">
+                <h2>Apakah Ledgerly benar-benar gratis?</h2>
+                <span class="faq-meta">Harga</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Ya, paket Starter gratis selamanya tanpa batas waktu — hingga 50 produk, dashboard inventaris, dan
+                    ekspor CSV, tanpa perlu kartu kredit. Kalau ingin mencoba fitur lengkap, ada Profesional Trial 7 hari
+                    yang juga gratis dan tidak ada penagihan apa pun. Begitu masa trial habis, akun otomatis kembali ke
+                    paket Starter gratis — jadi Anda tidak akan pernah ditagih tiba-tiba.</p>
+                </div>
+              </div>
+            </div>
           </button>
-          <div class="faq-answer">Ya, paket Starter gratis selamanya tanpa batas waktu — hingga 50 produk, dashboard inventaris, dan ekspor CSV, tanpa perlu kartu kredit. Kalau ingin mencoba fitur lengkap, ada Profesional Trial 7 hari yang juga gratis dan tidak ada penagihan apa pun. Begitu masa trial habis, akun otomatis kembali ke paket Starter gratis — jadi Anda tidak akan pernah ditagih tiba-tiba.</div>
         </div>
-        <div class="faq-item scroll-reveal delay-100">
+
+        <div class="faq-item scroll-reveal delay-100" onmousemove="setCardGlow(event)"
+          onmouseleave="clearCardGlow(event)">
+          <div class="faq-glow"></div>
           <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Bagaimana cara integrasi WhatsApp?</span>
-            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            <div class="faq-icon-wrap">
+              <div class="faq-icon-ping"></div>
+              <svg class="plus-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="faq-content-wrap">
+              <div class="faq-header">
+                <h2>Bagaimana cara integrasi WhatsApp?</h2>
+                <span class="faq-meta">Integrasi</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Cukup masukkan nomor WhatsApp di halaman Pengaturan dan aktifkan notifikasi. Sistem akan otomatis
+                    mengirimkan alert saat stok produk di bawah batas minimum. Pengiriman pesan ditangani oleh WhatsApp
+                    Gateway milik Ledgerly sendiri (berbasis Node.js).</p>
+                </div>
+              </div>
+            </div>
           </button>
-          <div class="faq-answer">Cukup masukkan nomor WhatsApp di halaman Pengaturan dan aktifkan notifikasi. Sistem akan otomatis mengirimkan alert saat stok produk di bawah batas minimum. Pengiriman pesan ditangani oleh WhatsApp Gateway milik Ledgerly sendiri (berbasis Node.js).</div>
         </div>
-        <div class="faq-item scroll-reveal delay-200">
+
+        <div class="faq-item scroll-reveal delay-200" onmousemove="setCardGlow(event)"
+          onmouseleave="clearCardGlow(event)">
+          <div class="faq-glow"></div>
           <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Apakah data saya aman?</span>
-            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            <div class="faq-icon-wrap">
+              <div class="faq-icon-ping"></div>
+              <svg class="plus-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="faq-content-wrap">
+              <div class="faq-header">
+                <h2>Apakah data saya aman?</h2>
+                <span class="faq-meta">Keamanan</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Data Anda disimpan di Supabase dengan Row-Level Security (RLS) sehingga setiap pengguna hanya bisa
+                    mengakses data miliknya sendiri. Koneksi terenkripsi (HTTPS), dan data dikelola di infrastruktur cloud
+                    Supabase yang melakukan backup berkala secara otomatis.</p>
+                </div>
+              </div>
+            </div>
           </button>
-          <div class="faq-answer">Data Anda disimpan di Supabase dengan Row-Level Security (RLS) sehingga setiap pengguna hanya bisa mengakses data miliknya sendiri. Koneksi terenkripsi (HTTPS), dan data dikelola di infrastruktur cloud Supabase yang melakukan backup berkala secara otomatis.</div>
         </div>
-        <div class="faq-item scroll-reveal delay-300">
+
+        <div class="faq-item scroll-reveal delay-300" onmousemove="setCardGlow(event)"
+          onmouseleave="clearCardGlow(event)">
+          <div class="faq-glow"></div>
           <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Bisa diakses dari HP?</span>
-            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            <div class="faq-icon-wrap">
+              <div class="faq-icon-ping"></div>
+              <svg class="plus-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="faq-content-wrap">
+              <div class="faq-header">
+                <h2>Bisa diakses dari HP?</h2>
+                <span class="faq-meta">Platform</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Ya, Ledgerly didesain responsif dan bisa diakses dari browser ponsel, tablet, maupun laptop. Tidak
+                    perlu menginstal aplikasi apa pun. Cukup buka browser dan login ke akun Anda.</p>
+                </div>
+              </div>
+            </div>
           </button>
-          <div class="faq-answer">Ya, Ledgerly didesain responsif dan bisa diakses dari browser ponsel, tablet, maupun laptop. Tidak perlu menginstal aplikasi apa pun. Cukup buka browser dan login ke akun Anda.</div>
         </div>
-        <div class="faq-item scroll-reveal delay-400">
+
+        <div class="faq-item scroll-reveal delay-400" onmousemove="setCardGlow(event)"
+          onmouseleave="clearCardGlow(event)">
+          <div class="faq-glow"></div>
           <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Bagaimana cara import data dari Excel?</span>
-            <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            <div class="faq-icon-wrap">
+              <div class="faq-icon-ping"></div>
+              <svg class="plus-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="faq-content-wrap">
+              <div class="faq-header">
+                <h2>Bagaimana cara import data dari Excel?</h2>
+                <span class="faq-meta">Fitur</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>Di halaman Transaksi, klik tombol "Upload CSV/Excel". Seret & letakkan file Anda atau klik untuk
+                    memilih file. Sistem akan otomatis memproses data dan mencatatkan transaksi. Templat CSV tersedia
+                    untuk referensi format.</p>
+                </div>
+              </div>
+            </div>
           </button>
-          <div class="faq-answer">Di halaman Transaksi, klik tombol "Upload CSV/Excel". Seret & letakkan file Anda atau klik untuk memilih file. Sistem akan otomatis memproses data dan mencatatkan transaksi. Templat CSV tersedia untuk referensi format.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- final CTA -->
-  <section class="section-cta">
-    <div class="cta-radial"></div>
-    <div class="cta-inner scroll-reveal">
-      <h2>Siap Kelola Bisnis Lebih Cerdas?</h2>
-      <p>Bergabunglah dengan ratusan pemilik UMKM yang sudah merasakan kemudahan mengelola inventaris dan keuangan dengan Ledgerly.</p>
-      <div class="cta-buttons">
-        <a href="register.html" class="cta-btn-white">
-          Mulai Gratis Sekarang
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-      </div>
-      <div class="cta-bottom-trust">
-        <span>✓ Gratis selamanya</span>
-        <span>✓ Tanpa kartu kredit</span>
-        <span>✓ Setup 5 menit</span>
-      </div>
-    </div>
-  </section>
+  <!-- cinematic footer -->
+  <div class="cinematic-curtain">
+    <footer class="cinematic-footer-wrapper">
 
-  </main>
+      <!-- Ambient Light & Grid Background -->
+      <div class="footer-aurora animate-footer-breathe"></div>
+      <div class="footer-bg-grid"></div>
 
-  <!-- footer -->
-  <footer class="landing-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-brand-inner">
-          <div class="logo-icon">
-            <img src="assets/logo.svg" alt="Ledgerly Logo">
+      <!-- Giant background text -->
+      <div class="footer-giant-bg-text" id="footer-giant-text">LEDGERLY</div>
+
+      <!-- Diagonal Sleek Marquee (Top of footer) -->
+      <div class="footer-marquee-wrap">
+        <div class="footer-marquee-inner animate-footer-scroll-marquee">
+          <span>Inventaris Terintegrasi</span> <span class="star">✦</span>
+          <span>Keuangan Akurat</span> <span class="star">✦</span>
+          <span>Notifikasi WhatsApp</span> <span class="star">✦</span>
+          <span>Analitik Cerdas</span> <span class="star">✦</span>
+          <span>Ekspor Laporan</span> <span class="star">✦</span>
+          <span>Gratis Selamanya</span> <span class="star">✦</span>
+          <!-- Duplicate for infinite scroll -->
+          <span>Inventaris Terintegrasi</span> <span class="star">✦</span>
+          <span>Keuangan Akurat</span> <span class="star">✦</span>
+          <span>Notifikasi WhatsApp</span> <span class="star">✦</span>
+          <span>Analitik Cerdas</span> <span class="star">✦</span>
+          <span>Ekspor Laporan</span> <span class="star">✦</span>
+          <span>Gratis Selamanya</span> <span class="star">✦</span>
+        </div>
+      </div>
+
+      <!-- Main Center Content -->
+      <div class="footer-content">
+        <h2 class="footer-text-glow footer-reveal-element" id="footer-heading">Siap Kelola Bisnis Lebih Cerdas?</h2>
+
+        <div class="footer-primary-buttons footer-reveal-element" id="footer-links">
+          <a href="login.html" class="footer-glass-pill footer-primary-btn magnetic-btn">
+            Masuk ke Aplikasi
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a href="#fitur" class="footer-glass-pill footer-primary-btn magnetic-btn">
+            Pelajari Fitur
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16V8" />
+              <path d="m8 12 4-4 4 4" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Extended Footer Grid -->
+      <div class="footer-extended">
+        <div class="footer-extended-glow"></div>
+        <div class="footer-extended-grid">
+
+          <div class="footer-brand">
+            <a href="index.html" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
+              <div
+                style="padding: 6px; width: 32px; height: 32px; display: inline-flex; justify-content: center; align-items: center; background: var(--indigo-600); border-radius: 8px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                </svg>
+              </div>
+              <span style="font-weight: 700; font-size: 1.25rem; color: #fff;">Ledgerly</span>
+            </a>
+            <p class="footer-brand-desc">
+              Sistem manajemen inventaris dan keuangan terintegrasi untuk UMKM Indonesia. Capstone Project
+              TP-G007.<br><br>
+              © 2026 Tim TP-G007 • Tempa led by Dicoding
+            </p>
           </div>
-          <span class="footer-brand-text">Ledgerly</span>
+
+          <div class="footer-links-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="footer-links-group">
+              <h3 class="footer-links-title">PRODUK</h3>
+              <ul class="footer-links-list">
+                <li><a href="#fitur">Fitur</a></li>
+                <li><a href="#harga">Harga</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#">Demo</a></li>
+              </ul>
+            </div>
+            <div class="footer-links-group">
+              <h3 class="footer-links-title">TIM</h3>
+              <ul class="footer-links-list">
+                <li><a href="#">M. Rohid Rivaldi</a></li>
+                <li><a href="#">Anwar Fauzi</a></li>
+                <li><a href="#">Nathanael Chand Kusuma</a></li>
+                <li><a href="#">Bangkit Agung Nugroho</a></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
-        <p>Sistem manajemen inventaris dan keuangan terintegrasi untuk UMKM Indonesia. Capstone Project TP-G007.</p>
-        <div class="copy">© 2026 Tim TP-G007 • Tempa led by Dicoding</div>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Produk</div>
-        <ul>
-          <li><a href="#fitur">Fitur</a></li>
-          <li><a href="#harga">Harga</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Tim</div>
-        <ul>
-          <li><a href="#">M. Rohid Rivaldi</a></li>
-          <li><a href="#">Anwar Fauzi</a></li>
-          <li><a href="#">Nathanael Chandra Kusuma</a></li>
-          <li><a href="#">Bangkit Agung Nugroho</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Dibuat dengan ❤️ oleh Tim TP-G007</span>
-      <div class="footer-bottom-links">
-        <a href="syarat-ketentuan.html">Syarat & Ketentuan</a>
-        <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
-      </div>
-    </div>
-  </footer>
+
+        <!-- Bottom Bar / Credits -->
+        <div class="footer-bottom-bar"
+          style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 32px; margin-top: 32px; width: 100%; max-width: 1152px;">
+          <div style="font-size: 12px; color: var(--slate-400); text-align: center;">
+            Dibuat dengan <span style="color: #ef4444;">❤️</span> oleh Tim TP-G007
+          </div>
+
+          <div
+            style="display: flex; gap: 24px; font-size: 12px; color: var(--slate-400); justify-content: center; flex-wrap: wrap;">
+            <a href="syarat-ketentuan.html" style="color: inherit; text-decoration: none; transition: color 0.3s;"
+              onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--slate-400)'">Syarat &
+              Ketentuan</a>
+            <a href="kebijakan-privasi.html" style="color: inherit; text-decoration: none; transition: color 0.3s;"
+              onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--slate-400)'">Kebijakan
+              Privasi</a>
+          </div>
+        </div>
+    </footer>
+  </div>
 
   <!-- Lenis Smooth Scroll CDN -->
-  <!-- Lenis self-hosted (same-origin), bukan unpkg CDN — konsisten anti-503 -->
+  <!-- Lenis self-hosted (same-origin), bukan unpkg CDN — CSP vercel.json cuma izinin 'self' -->
   <script src="js/vendor/lenis.js?v=9"></script>
-  <script>
-    // Inisialisasi Lenis Smooth Scroll
-    const lenis = new Lenis({
-      autoRaf: true
-    });
-
-    // Integrasi navigasi hash agar sinkron dengan Lenis
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        const targetEl = document.querySelector(targetId);
-        if (targetEl) {
-          lenis.scrollTo(targetEl, {
-            offset: -100 // berikan ruang offset untuk floating navbar
-          });
-        }
-      });
-    });
-
-    // Toggle kelas .scrolled pada floating navbar
-    window.addEventListener('scroll', function() {
-      var nav = document.getElementById('nav-utama');
-      if (nav) {
-        if (window.scrollY > 20) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-      }
-    });
-
-    // IntersectionObserver untuk Scroll-Reveal animasi
-    document.addEventListener('DOMContentLoaded', function() {
-      // Toggle mobile hamburger menu
-      const btnToggle = document.getElementById('btn-toggle-menu');
-      const navUtama = document.getElementById('nav-utama');
-      
-      if (btnToggle && navUtama) {
-        btnToggle.addEventListener('click', function(e) {
-          e.stopPropagation();
-          navUtama.classList.toggle('menu-open');
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-          if (!navUtama.contains(event.target)) {
-            navUtama.classList.remove('menu-open');
-          }
-        });
-        
-        // Close menu when clicking any link inside
-        const mobileLinks = navUtama.querySelectorAll('.mobile-menu a');
-        mobileLinks.forEach(link => {
-          link.addEventListener('click', function() {
-            navUtama.classList.remove('menu-open');
-          });
-        });
-      }
-
-      var revealElements = document.querySelectorAll('.scroll-reveal');
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target); // Hanya animasi satu kali
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      revealElements.forEach(function(el) {
-        observer.observe(el);
-      });
-    });
-
-    // Ambil nomor wa.me 'Hubungi Sales' dari Platform_Settings (diatur superadmin).
-    // pake REST ringan (gak load SDK supabase penuh) — env di-inject vite ke window.process.
-    (function() {
-      try {
-        var env = (window.process && window.process.env) ? window.process.env : {};
-        var url = env.VITE_SUPABASE_URL, key = env.VITE_SUPABASE_ANON_KEY;
-        if (!url || !key) return;
-        fetch(url + '/rest/v1/Platform_Settings?key=eq.wa_admin&select=value', {
-          headers: { apikey: key, Authorization: 'Bearer ' + key }
-        }).then(function(r) { return r.json(); }).then(function(data) {
-          if (data && data[0] && data[0].value) {
-            var cta = document.getElementById('cta-wa-sales');
-            if (cta) {
-              var pesan = encodeURIComponent('Halo Admin Ledgerly, saya tertarik dengan Paket Enterprise Kustom untuk multi-cabang.');
-              cta.href = 'https://wa.me/' + data[0].value + '?text=' + pesan;
-            }
-          }
-        }).catch(function() { /* fallback ke nomor default di html */ });
-      } catch (e) {}
-    })();
-
-    // toggle FAQ accordion
-    function toggleFaq(btn) {
-      var item = btn.parentElement;
-      // tutup yg lain dulu
-      document.querySelectorAll('.faq-item').forEach(function(el) {
-        if (el !== item) el.classList.remove('open');
-      });
-      item.classList.toggle('open');
-    }
-  </script>
+  <script src="js/efek/landing-efek.js?v=1"></script>
   <script src="js/chat-demo.js?v=9"></script>
   <script src="js/theme.js?v=9"></script>
 </body>
+
 </html>
