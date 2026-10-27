@@ -329,6 +329,13 @@ function levenshtein(a, b) {
 }
 
 async function tanyaGeminiAI(pesan, onChunk) {
+  // demo gak punya sesi asli -> /api/chatbot pasti nolak (dan memang harus,
+  // biar kuota Gemini gak bisa dipakai tanpa akun). kasih jawaban contoh.
+  if (window.LEDGERLY_DEMO) {
+    let jawab = 'Di **mode demo**, asisten AI (Gemini) tidak aktif. Perintah cepat seperti **"cek stok Aqua"** atau **"tambah 10 Indomie masuk"** tetap bisa dicoba. Daftar akun gratis untuk memakai analisis AI penuh.';
+    if (typeof onChunk === 'function') onChunk(jawab);
+    return jawab;
+  }
   // SELALU lewat proxy /api/chatbot (server-side) — baik di localhost (dev middleware
   // di vite.config.js) maupun produksi (serverless function Vercel).
   // API key Gemini gak pernah dikirim ke browser, jadi gak keliatan di Network/console.

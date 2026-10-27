@@ -123,6 +123,8 @@ function logout() {
     pesan: 'Anda akan keluar dari sistem dan kembali ke halaman login.',
     teksYa: 'Ya, Keluar',
     onYa: async function() {
+      // demo: jgn sentuh sesi Supabase asli, cukup bersihin demo & pulihin data asli
+      if (window.LEDGERLY_DEMO) { window.keluarDemo(); return; }
       if (window.supabaseClient) {
         try {
           await window.supabaseClient.auth.signOut();
@@ -816,6 +818,8 @@ function bukaIDB() {
 
 // simpan snapshot produk + transaksi + kategori ke IndexedDB
 function simpanSnapshotOffline() {
+  // demo jgn nimpa snapshot offline punya akun asli di browser ini
+  if (window.LEDGERLY_DEMO) return;
   bukaIDB().then(function(db) {
     var tx = db.transaction(_IDB_STORE, 'readwrite');
     var st = tx.objectStore(_IDB_STORE);

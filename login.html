@@ -177,6 +177,16 @@
                   Masuk dengan Google
                 </button>
 
+                <!-- mode demo: dasbor + data contoh, tanpa akun & tanpa backend (js/demo.js) -->
+                <button
+                  type="button"
+                  onclick="masukDemo()"
+                  style="width:100%; margin-top:10px; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 16px; border:1px dashed var(--indigo-300); border-radius:12px; background:transparent; color:var(--indigo-600); font-size:14px; font-weight:600; cursor:pointer;"
+                >
+                  Coba Demo Dashboard
+                  <span style="font-size:12px; font-weight:500; color:var(--slate-500);">(tanpa daftar)</span>
+                </button>
+
                 <div class="auth-switch-text">
                   Belum punya akun?
                   <a href="register.html">Daftar gratis</a>
@@ -233,6 +243,7 @@
     <!-- load data sama supabase js buat fungsi login -->
     <!-- supabase-js self-hosted (same-origin), bukan CDN — hindari 503 jsdelivr -->
     <script src="js/vendor/supabase.js?v=9"></script>
+    <script src="js/demo.js?v=9"></script>
     <script src="js/supabase.js?v=9"></script>
     <script src="js/data.js?v=9"></script>
     <script src="js/utils.js?v=9"></script>

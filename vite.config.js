@@ -38,6 +38,15 @@ export default defineConfig(({ mode }) => {
           // 1b. Inject Turnstile Site Key ke widget data-sitekey di HTML
           out = out.replace(/YOUR_TURNSTILE_SITE_KEY/g, env.VITE_TURNSTILE_SITE_KEY || '')
 
+          // 1c. captcha opsional: klo site key kosong (mis. orang clone repo tanpa akun
+          // Cloudflare), jgn muat api.js turnstile & sembunyiin kotaknya. tanpa api.js
+          // window.turnstile undefined -> semua `if (window.turnstile)` otomatis skip,
+          // gak ada lagi error "Could not find widget". matiin Captcha di Supabase juga.
+          if (!env.VITE_TURNSTILE_SITE_KEY) {
+            out = out.replace(/\s*<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js"[^>]*><\/script>/, '')
+            out = out.replace('</head>', '  <style>.cf-turnstile-container{display:none}</style>\n</head>')
+          }
+
           // 2. auto cache-busting: ganti semua ?v=NN di tag script jadi versi otomatis.
           // jadi gak usah bump manual ?v=8 -> ?v=9 tiap edit js lagi.
           // dev: tiap reload dpt timestamp baru (browser gak nyimpen js basi).
