@@ -51,6 +51,7 @@ function renderSidebar() {
     navHtml += navLink("#kelola-pengumuman", icon("bell"), "Kelola Pengumuman");
     navHtml += navLink("#pengaturan-platform", icon("settings"), "Pengaturan Platform");
   } else {
+    navHtml += navLink("#beranda", icon("barChart"), "Beranda");
     navHtml += navLink("#inventaris", icon("package"), "Inventaris");
     navHtml += navLink("#keuangan", icon("wallet"), "Keuangan");
     navHtml += navLink("#transaksi", icon("arrowLeftRight"), "Transaksi");
