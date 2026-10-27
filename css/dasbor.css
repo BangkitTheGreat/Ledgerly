@@ -23,77 +23,73 @@
   border-right: 1px solid var(--slate-200);
   background: #fff;
   position: relative;
-  transition: width 0.2s ease-in-out;
+  z-index: 35; /* menu "Sidebar control" harus di atas konten */
+  transition: width 0.2s ease-in-out, box-shadow 0.2s ease;
 }
 @media (min-width: 768px) { .sidebar { display: flex; } }
+/* teks gak boleh kebungkus pas lebar sidebar lagi beranimasi */
+.sidebar-brand, .sidebar-nav { overflow-x: hidden; }
+.sidebar-link span, .sidebar-brand-text { white-space: nowrap; }
 
-/* Toggle button melayang */
-.sidebar-toggle-btn {
-  position: absolute;
-  right: -13px;
-  top: 20px;
-  z-index: 100;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1px solid var(--slate-200);
-  box-shadow: var(--shadow-sm);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--slate-500);
-  transition: all 0.2s;
-  outline: none;
-  padding: 0;
-}
-.sidebar-toggle-btn:hover {
-  background: var(--slate-50);
-  color: var(--slate-800);
-  border-color: var(--slate-300);
-  box-shadow: var(--shadow-md);
-}
+/* -- mode "Expand on hover": sidebar melayang di atas konten (gak geser
+   layout), sempit 72px, melebar pas di-hover / difokus keyboard -- */
 @media (min-width: 768px) {
-  .sidebar-toggle-btn {
-    display: flex;
-  }
-}
-
-/* Collapsed sidebar layout */
-@media (min-width: 768px) {
-  .sidebar-collapsed .sidebar {
+  .sidebar-mode-hover .sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
     width: 72px;
   }
-  .sidebar-collapsed .sidebar-brand {
+  .sidebar-mode-hover .main-content { margin-left: 72px; }
+  .sidebar-mode-hover .sidebar:hover,
+  .sidebar-mode-hover .sidebar:has(:focus-visible) {
+    width: 256px;
+    box-shadow: 8px 0 30px -12px rgba(15, 23, 42, 0.25);
+  }
+}
+
+/* -- tampilan sempit: mode collapsed, atau mode hover yg lagi gak di-hover (fokus keyboard = tetap lebar) -- */
+@media (min-width: 768px) {
+  .sidebar-collapsed .sidebar { width: 72px; }
+  .sidebar-collapsed .sidebar-brand,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-brand {
     padding: 0;
     justify-content: center;
   }
-  .sidebar-collapsed .sidebar-brand-text {
+  .sidebar-collapsed .sidebar-brand-text,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-brand-text,
+  .sidebar-collapsed .sidebar-link span,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-link span,
+  .sidebar-collapsed .sidebar-user-info,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-user-info {
     display: none;
   }
-  .sidebar-collapsed .sidebar-link {
+  .sidebar-collapsed .sidebar-link,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-link {
     justify-content: center;
     padding: 10px;
   }
-  .sidebar-collapsed .sidebar-link span {
-    display: none;
-  }
-  .sidebar-collapsed .sidebar-user {
+  .sidebar-collapsed .sidebar-user,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-user {
     flex-direction: column;
     gap: 8px;
     align-items: center;
     background: transparent;
-    padding: 8px 0;
+    padding: 4px 0 0;
   }
-  .sidebar-collapsed .sidebar-user-info {
-    display: none;
+  .sidebar-collapsed .sidebar-akun-link,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-akun-link {
+    flex: none;
+    justify-content: center;
   }
-  .sidebar-collapsed .sidebar-logout {
-    margin: 0;
+  /* [control][tema] numpuk -> tema pas di atas akun */
+  .sidebar-collapsed .sidebar-kontrol-baris,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-kontrol-baris {
+    flex-direction: column;
+    gap: 8px;
   }
 }
-
 
 .sidebar-brand {
   display: flex;
@@ -145,10 +141,6 @@
   background: var(--slate-50);
 }
 .sidebar-tema-toggle svg { width: 16px; height: 16px; }
-/* saat collapsed sidebar sempit (72px) -> sembunyiin toggle tema */
-@media (min-width: 768px) {
-  .sidebar-collapsed .sidebar-tema-toggle { display: none; }
-}
 
 .sidebar-nav {
   flex: 1;
@@ -237,6 +229,106 @@
 .sidebar-logout:hover {
   background: #fff;
   color: var(--rose-600);
+}
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* -- tombol "Sidebar control" + menu (ala Supabase) -- */
+.sidebar-kontrol {
+  position: relative;
+  display: flex;
+}
+.sidebar-kontrol-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-lg);
+  color: var(--slate-500);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar-kontrol-btn:hover,
+.sidebar-kontrol-btn[aria-expanded="true"] {
+  background: var(--slate-100);
+  color: var(--slate-900);
+}
+.sidebar-mode-menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  z-index: 60;
+  width: 220px;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--slate-200);
+  background: var(--surface, #fff);
+  box-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.25);
+}
+.sidebar-mode-menu[hidden] { display: none; }
+.sidebar-mode-judul {
+  padding: 8px 10px 10px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--slate-200);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--slate-500);
+}
+.sidebar-mode-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--slate-700);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sidebar-mode-opt:hover { background: var(--slate-100); }
+.sidebar-mode-opt.aktif { color: var(--slate-900); font-weight: 600; }
+.sidebar-mode-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sidebar-mode-opt.aktif .sidebar-mode-dot { background: currentColor; }
+.sidebar-kontrol-btn:focus-visible,
+.sidebar-mode-opt:focus-visible,
+.sidebar-akun-link:focus-visible,
+.sidebar-logout:focus-visible {
+  outline: 2px solid var(--indigo-500);
+  outline-offset: 2px;
+}
+
+/* -- baris bawah: [sidebar control][toggle tema] -- */
+.sidebar-kontrol-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* -- avatar + nama = link ke halaman Akun -- */
+.sidebar-akun-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+}
+.sidebar-akun-link:hover .sidebar-user-name { color: var(--indigo-600); }
+.sidebar-akun-link.active .sidebar-avatar,
+.sidebar-akun-link:hover .sidebar-avatar {
+  box-shadow: 0 0 0 2px var(--surface, #fff), 0 0 0 4px var(--indigo-400);
 }
 
 /* ============ TOPBAR ============ */
@@ -503,6 +595,12 @@
 }
 @media (min-width: 1024px) {
   .layout-2-1 { grid-template-columns: 2fr 1fr; }
+}
+/* item grid default min-width:auto -> canvas Chart.js yg sempet dirender lebar
+   bikin kolom melar & kartu sebelahnya kedorong keluar layar */
+.layout-2-1 > *,
+.layout-1-1 > * {
+  min-width: 0;
 }
 .layout-1-1 {
   display: grid;
@@ -1117,3 +1215,220 @@
   }
 }
 
+
+/* =============================================
+   GAYA DASBOR "CAPSTONE": kartu kaca, stat card besar, tabel lapang + aurora
+   ditaruh di dasbor.css (bukan style.css) biar landing/register yg juga pakai
+   .card gak ikut berubah. dark mode-nya di theme.css.
+   ============================================= */
+
+/* -- kartu: semi-transparan biar aurora di belakang samar kebaca.
+   sengaja TANPA backdrop-filter: aurora animasi terus -> blur di belakang
+   tiap kartu dihitung ulang tiap frame, berat di HP murah. aurora-nya sendiri
+   udah di-blur, jadi kesan kacanya tetap dapet. -- */
+.dasbor-shell .card {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(226, 232, 240, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+}
+.dasbor-shell .card-header {
+  padding: 20px 24px;
+  border-bottom-color: rgba(15, 23, 42, 0.05);
+}
+
+/* -- stat card --
+   ikon dipindah ke pojok kanan atas (sejajar label) biar angka dapet lebar
+   penuh kartu. klo ikon sebaris sama angka, "Rp 8.071.000" 28px luber/
+   bikin kolom grid melar & kartu ke-4 kejepit di layar 1280px. */
+.stats-row > * {
+  min-width: 0;
+}
+.dasbor-shell .stat-card {
+  position: relative;
+  padding: 24px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.dasbor-shell .stat-card-wrap > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+.dasbor-shell .stat-card .stat-icon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+.dasbor-shell .stat-label {
+  padding-right: 60px;
+  min-height: 48px;
+}
+.dasbor-shell .stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.1);
+}
+.dasbor-shell .stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.dasbor-shell .stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--indigo-50), #fff);
+  color: var(--indigo-600);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 4px 12px -4px rgba(99, 102, 241, 0.25);
+}
+/* HP: grid stat 2 kolom sempit -> angka 28px ("Rp 4.865.500") bisa luber */
+@media (max-width: 640px) {
+  .dasbor-shell .stat-card { padding: 18px; }
+  /* angka gak boleh patah ("Rp 4.865.5/00"); ukuran ikut lebar layar biar
+     tetap muat 1 baris di HP 360px (375px -> ±19px) */
+  .dasbor-shell .stat-value { font-size: clamp(16px, 5vw, 22px); white-space: nowrap; }
+  .dasbor-shell .stat-card .stat-icon { width: 40px; height: 40px; border-radius: 12px; top: 18px; right: 18px; }
+  .dasbor-shell .stat-label { padding-right: 48px; min-height: 40px; }
+}
+
+/* -- tabel -- */
+.dasbor-shell .tabel thead {
+  background: rgba(15, 23, 42, 0.02);
+}
+.dasbor-shell .tabel th {
+  padding: 16px 20px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.dasbor-shell .tabel td {
+  padding: 16px 20px;
+  border-top-color: rgba(15, 23, 42, 0.04);
+  transition: background 0.2s;
+}
+.dasbor-shell .tabel tbody tr:hover,
+.dasbor-shell .tabel tbody tr:hover td {
+  background: rgba(99, 102, 241, 0.04);
+}
+
+/* -- aurora: lapisan di belakang .main-content (gak ikut ke-scroll).
+   isolation + z-index -1 -> selalu di belakang konten tanpa ngubah
+   position topbar (sticky) / page-content. -- */
+.main-content {
+  position: relative;
+  isolation: isolate;
+}
+.aurora-inner {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora-bg {
+  --aurora-dasar: #ffffff;
+  --aurora: repeating-linear-gradient(100deg, #3b82f6 10%, #a5b4fc 15%, #93c5fd 20%, #ddd6fe 25%, #60a5fa 30%);
+  --aurora-garis: repeating-linear-gradient(100deg, var(--aurora-dasar) 0%, var(--aurora-dasar) 7%, transparent 10%, transparent 12%, var(--aurora-dasar) 16%);
+  position: absolute;
+  inset: -10px;
+  background-image: var(--aurora-garis), var(--aurora);
+  background-size: 300% 200%;
+  background-position: 50% 50%, 50% 50%;
+  filter: blur(10px);
+  opacity: 0.8;
+  /* cuma nyala di pojok kanan atas, memudar ke tengah */
+  mask-image: radial-gradient(ellipse at 100% 0%, #000 15%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 100% 0%, #000 15%, transparent 75%);
+  animation: aurora-gerak 60s linear infinite;
+  will-change: background-position;
+}
+@keyframes aurora-gerak {
+  from { background-position: 50% 50%, 50% 50%; }
+  to { background-position: 350% 50%, 350% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-bg { animation: none; }
+  .dasbor-shell .stat-card { transition: none; }
+  .dasbor-shell .stat-card:hover { transform: none; }
+}
+
+/* -- grid stat ngikut jumlah kartu: Laporan & Keputusan cuma 3 kartu ->
+   di grid 4 kolom nyisain slot kosong di kanan. 3 kartu = 3 kolom.
+   di bawah 1024 (2 kolom), kartu ganjil terakhir melebar penuh. -- */
+@media (min-width: 1024px) {
+  .stats-row:has(> :last-child:nth-child(3)) { grid-template-columns: repeat(3, 1fr); }
+  .stats-row:has(> :last-child:nth-child(2)) { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1023px) {
+  .stats-row > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+
+/* =============================================
+   SHELL BERBINGKAI (ala referensi): sidebar nyatu ke bingkai luar tanpa
+   garis, konten jadi panel melengkung yg berdiri sendiri. garis header
+   sidebar & garis vertikal dihapus -> gak ada lagi garis yg "gak nyambung".
+   ============================================= */
+.dasbor-shell {
+  --bingkai: #eef1f6;
+  background: var(--bingkai);
+}
+.dasbor-shell .sidebar {
+  background: var(--bingkai);
+  border-right: none;
+}
+.dasbor-shell .sidebar-brand { border-bottom: none; }
+.dasbor-shell .sidebar-footer { border-top: none; }
+.dasbor-shell .sidebar-link:hover { background: rgba(15, 23, 42, 0.05); }
+.dasbor-shell .sidebar-link.active {
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+.dasbor-shell .sidebar-user { background: rgba(255, 255, 255, 0.7); }
+.dasbor-shell .sidebar-kontrol-btn:hover,
+.dasbor-shell .sidebar-kontrol-btn[aria-expanded="true"] { background: rgba(15, 23, 42, 0.06); }
+
+/* tombol footer seragam: kotak 36px tanpa border (control, tema, keluar).
+   margin-left:auto bawaan toggle tema dibuang — pas footer numpuk (sidebar
+   sempit) itu yg ngedorong tombol tema keluar dr garis tengah */
+.dasbor-shell .sidebar-footer .sidebar-tema-toggle,
+.dasbor-shell .sidebar-logout {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--slate-500);
+}
+.dasbor-shell .sidebar-footer .sidebar-tema-toggle:hover {
+  transform: none;
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--slate-900);
+}
+
+/* layout ala referensi: topbar nempel di bingkai (di luar panel), panel
+   melengkung mulai di bawahnya. latar panel digambar di lapisan aurora
+   (biar aurora tetap di dalam panel), area scroll ikut melengkung */
+@media (min-width: 768px) {
+  .dasbor-shell .topbar {
+    background: transparent;
+    border-bottom: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding-left: 12px;
+  }
+  .dasbor-shell .page-content {
+    margin: 0 10px 10px 0;
+    border-radius: 24px;
+  }
+  .dasbor-shell .aurora-inner {
+    top: 64px;
+    right: 10px;
+    bottom: 10px;
+    left: 0;
+    border-radius: 24px;
+    background: var(--slate-50);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 12px 40px -20px rgba(15, 23, 42, 0.25);
+  }
+}

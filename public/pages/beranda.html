@@ -1,0 +1,76 @@
+<div class="page-header beranda-header">
+  <div>
+    <h1 class="page-title" id="ber-sapaan">Beranda</h1>
+    <p class="page-desc" id="ber-tanggal">Ringkasan toko Anda hari ini</p>
+  </div>
+</div>
+
+<!-- baris atas: hero (lebar) + kesehatan stok -->
+<div class="beranda-atas">
+  <section class="beranda-hero" aria-labelledby="ber-hero-label">
+    <div class="beranda-hero-isi">
+      <div class="beranda-hero-label" id="ber-hero-label">Omzet hari ini</div>
+      <div class="beranda-hero-angka" id="ber-omzet-hari">Rp 0</div>
+      <div class="beranda-hero-mini">
+        <div class="beranda-mini">
+          <span class="beranda-mini-ikon" id="ber-ikon-pesanan" aria-hidden="true"></span>
+          <div>
+            <div class="beranda-mini-label">Pesanan hari ini</div>
+            <div class="beranda-mini-nilai" id="ber-pesanan-hari">0</div>
+          </div>
+        </div>
+        <div class="beranda-mini">
+          <span class="beranda-mini-ikon" id="ber-ikon-laba" aria-hidden="true"></span>
+          <div>
+            <div class="beranda-mini-label">Laba bersih 30 hari</div>
+            <div class="beranda-mini-nilai" id="ber-laba-30">Rp 0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="beranda-hero-grafik">
+      <div class="beranda-hero-grafik-label">Tren omzet 14 hari</div>
+      <div class="beranda-spark-wrap"><canvas id="ber-spark" aria-label="Grafik tren omzet 14 hari terakhir" role="img"></canvas></div>
+    </div>
+    <a href="#keuangan" class="beranda-hero-cta">Lihat laporan keuangan <span aria-hidden="true">›</span></a>
+  </section>
+
+  <section class="beranda-gauge" aria-labelledby="ber-gauge-judul">
+    <div class="beranda-gauge-judul" id="ber-gauge-judul">Kesehatan stok</div>
+    <div class="beranda-gauge-baris">
+      <div class="beranda-gauge-angka"><span id="ber-sehat-persen">0</span><small>%</small></div>
+      <div class="beranda-gauge-chart"><canvas id="ber-gauge" aria-label="Persentase produk dengan stok aman" role="img"></canvas></div>
+    </div>
+    <p class="beranda-gauge-teks" id="ber-gauge-teks"></p>
+    <a href="#keputusan" class="beranda-gauge-cta" id="ber-gauge-cta">
+      <span id="ber-gauge-cta-teks">Lihat rekomendasi restock</span>
+      <span class="beranda-gauge-cta-panah" aria-hidden="true">›</span>
+    </a>
+  </section>
+</div>
+
+<!-- baris bawah: performa omzet, produk terlaris, metode pembayaran -->
+<div class="beranda-bawah">
+  <section class="card beranda-panel">
+    <div class="beranda-panel-judul">Performa omzet</div>
+    <div class="beranda-omzet-head">
+      <span class="beranda-omzet-ikon" id="ber-ikon-omzet" aria-hidden="true"></span>
+      <div>
+        <div class="beranda-omzet-nilai" id="ber-omzet-bulan">Rp 0</div>
+        <div class="beranda-omzet-label">Omzet bulan ini</div>
+      </div>
+    </div>
+    <div class="beranda-bar-wrap"><canvas id="ber-bar" aria-label="Grafik omzet 6 bulan terakhir" role="img"></canvas></div>
+  </section>
+
+  <section class="card beranda-panel">
+    <div class="beranda-panel-judul">Produk terlaris</div>
+    <ul class="beranda-terlaris" id="ber-terlaris"></ul>
+  </section>
+
+  <section class="card beranda-panel">
+    <div class="beranda-panel-judul">Metode pembayaran</div>
+    <div class="beranda-panel-sub">Penjualan 30 hari terakhir</div>
+    <ul class="beranda-metode" id="ber-metode"></ul>
+  </section>
+</div>

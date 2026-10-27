@@ -57,7 +57,7 @@ function jadwalkanRender() {
   if (renderTimeout) clearTimeout(renderTimeout);
   renderTimeout = setTimeout(function() {
     if (typeof navigasi === 'function') {
-      navigasi(window.location.hash || '#inventaris');
+      navigasi(window.location.hash);
     }
   }, 10); // debounce 10ms untuk mencegah re-render berlebihan
 }
@@ -123,6 +123,8 @@ function logout() {
     pesan: 'Anda akan keluar dari sistem dan kembali ke halaman login.',
     teksYa: 'Ya, Keluar',
     onYa: async function() {
+      // demo: jgn sentuh sesi Supabase asli, cukup bersihin demo & pulihin data asli
+      if (window.LEDGERLY_DEMO) { window.keluarDemo(); return; }
       if (window.supabaseClient) {
         try {
           await window.supabaseClient.auth.signOut();
@@ -325,6 +327,7 @@ function hitungInventaris() {
 // daftar halaman yg tersedia
 var ROUTES = {
   // format: '#hash': { title: 'Judul Halaman', init: namaFungsiInitHalaman ? jika tidak ada, function kosong } 
+  '#beranda': { title: 'Beranda', init: typeof initBeranda !== 'undefined' ? initBeranda : function(){} },
   '#inventaris': { title: 'Inventaris', init: typeof initInventaris !== 'undefined' ? initInventaris : function(){} },
   '#keuangan': { title: 'Keuangan', init: typeof initKeuangan !== 'undefined' ? initKeuangan : function(){} },
   '#transaksi': { title: 'Transaksi', init: typeof initTransaksi !== 'undefined' ? initTransaksi : function(){} },
@@ -335,10 +338,11 @@ var ROUTES = {
   '#kelola-pemilik': { title: 'Kelola Pemilik', init: typeof initKelolaPemilik !== 'undefined' ? initKelolaPemilik : function(){} },
   '#dasbor-superadmin': { title: 'Ikhtisar Sistem', init: typeof initDasborSuperadmin !== 'undefined' ? initDasborSuperadmin : function(){} },
   '#pengaturan-platform': { title: 'Pengaturan Platform', init: typeof initPengaturanPlatform !== 'undefined' ? initPengaturanPlatform : function(){} },
-  '#kelola-pengumuman': { title: 'Kelola Pengumuman', init: typeof initKelolaPengumuman !== 'undefined' ? initKelolaPengumuman : function(){} }
+  '#kelola-pengumuman': { title: 'Kelola Pengumuman', init: typeof initKelolaPengumuman !== 'undefined' ? initKelolaPengumuman : function(){} },
+  '#akun': { title: 'Akun Saya', init: typeof initAkun !== 'undefined' ? initAkun : function(){} }
 };
 
-var halamanSkrg = '#inventaris'; // default
+var halamanSkrg = '#beranda'; // default
 
 // function untuk pindah css kustom sesuai halaman nya
 function muatStylesHalaman(pageName) {
@@ -356,7 +360,7 @@ function muatStylesHalaman(pageName) {
 // function untuk pindah / navigasi antar halaman
 async function navigasi(hash) {
   let userRole = (store.user && store.user.role) ? store.user.role : 'pemilik';
-  let defaultHash = (userRole === 'superadmin') ? '#dasbor-superadmin' : '#inventaris';
+  let defaultHash = (userRole === 'superadmin') ? '#dasbor-superadmin' : '#beranda';
 
   // jika hash tidak valid atau tidak ada di ROUTES, pakai default
   if (!hash || !ROUTES[hash]) hash = defaultHash;
@@ -367,11 +371,11 @@ async function navigasi(hash) {
   // jika user bukan superadmin, tidak boleh akses halaman superadmin
   if (userRole !== 'superadmin') {
     if (halamanSuperadmin.indexOf(hash) !== -1) {
-      hash = '#inventaris';
+      hash = defaultHash;
     }
   } else {
-    // superadmin cuma boleh di halaman superadmin
-    if (halamanSuperadmin.indexOf(hash) === -1) {
+    // superadmin cuma boleh di halaman superadmin (+ halaman akun sendiri)
+    if (halamanSuperadmin.indexOf(hash) === -1 && hash !== '#akun') {
       hash = '#dasbor-superadmin';
     }
   }
@@ -419,6 +423,8 @@ async function navigasi(hash) {
   document.querySelectorAll('.sidebar-link').forEach(function(el) {
     el.classList.toggle('active', el.getAttribute('data-hash') === hash);
   });
+  let akunLink = document.querySelector('.sidebar-akun-link');
+  if (akunLink) akunLink.classList.toggle('active', hash === '#akun');
 
   // update search bar visibility
   if (typeof updateTopbarSearchVisibility === 'function') {
@@ -768,7 +774,7 @@ async function sinkronisasiSupabase() {
     store.notifikasi = buatNotifikasi(); // function dari data.js
 
     // Re-render halaman aktif setelah data berhasil dimuat
-    navigasi(window.location.hash || '#inventaris');
+    navigasi(window.location.hash);
     console.log("Sinkronisasi data Supabase berhasil!");
 
     // simpan snapshot ke IndexedDB biar bisa dibaca pas offline nanti
@@ -783,7 +789,7 @@ async function sinkronisasiSupabase() {
         store.kategoriList = snap.kategoriList || [];
         hitungStatistikDariTransaksi();
         store.notifikasi = buatNotifikasi();
-        navigasi(window.location.hash || '#inventaris');
+        navigasi(window.location.hash);
         console.log("Memuat data dari snapshot offline (terakhir: " + (snap.disimpanPada || '?') + ")");
       } else {
         hitungStatistikDariTransaksi(); // gak ada snapshot — default stats
@@ -816,6 +822,8 @@ function bukaIDB() {
 
 // simpan snapshot produk + transaksi + kategori ke IndexedDB
 function simpanSnapshotOffline() {
+  // demo jgn nimpa snapshot offline punya akun asli di browser ini
+  if (window.LEDGERLY_DEMO) return;
   bukaIDB().then(function(db) {
     var tx = db.transaction(_IDB_STORE, 'readwrite');
     var st = tx.objectStore(_IDB_STORE);
@@ -869,7 +877,7 @@ function initApp() {
   renderTopbar();
 
   // Pake hash utk navigasi awal
-  let hash = window.location.hash || '#inventaris';
+  let hash = window.location.hash; // kosong -> navigasi() pilih default sesuai role
   navigasi(hash);
 
   // Jalankan sinkronisasi data dari Supabase secara asinkron

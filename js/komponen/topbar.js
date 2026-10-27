@@ -152,6 +152,7 @@ function bukaMobileNav() {
     linksHtml += mobileLink('#dasbor-superadmin', icon('fileBarChart', 18), 'Ikhtisar Sistem');
     linksHtml += mobileLink('#kelola-pemilik', icon('users', 18), 'Kelola Pemilik');
   } else {
+    linksHtml += mobileLink('#beranda', icon('barChart', 18), 'Beranda');
     linksHtml += mobileLink('#inventaris', icon('package', 18), 'Inventaris');
     linksHtml += mobileLink('#keuangan', icon('wallet', 18), 'Keuangan');
     linksHtml += mobileLink('#transaksi', icon('arrowLeftRight', 18), 'Transaksi');
@@ -159,6 +160,7 @@ function bukaMobileNav() {
     linksHtml += mobileLink('#keputusan', icon('lightbulb', 18), 'Keputusan');
     linksHtml += mobileLink('#pengaturan', icon('settings', 18), 'Pengaturan');
   }
+  linksHtml += mobileLink('#akun', icon('user', 18), 'Akun Saya');
 
   panel.innerHTML = `
     <div class="mobile-nav-header">

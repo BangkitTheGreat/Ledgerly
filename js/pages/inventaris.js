@@ -212,7 +212,7 @@ function initInventarisChart() {
   let sizer = document.getElementById('chart-stok-sizer');
   if (sizer) {
     let lebarIdeal = urut.length * 72;
-    sizer.style.minWidth = lebarIdeal > sizer.parentElement.clientWidth ? lebarIdeal + 'px' : '100%';
+    sizer.style.minWidth = (urut.length > 15 && lebarIdeal > sizer.parentElement.clientWidth) ? lebarIdeal + 'px' : '100%';
   }
 
   // update subtitle kasih info jumlah + saran scroll klo banyak

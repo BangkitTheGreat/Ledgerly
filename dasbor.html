@@ -30,6 +30,8 @@
 
       <!-- area utama -->
       <div class="main-content">
+        <!-- latar aurora (dekorasi, css/dasbor.css) -->
+        <div class="aurora-inner" aria-hidden="true"><div class="aurora-bg"></div></div>
         <!-- topbar (di-render oleh topbar.js) -->
         <header class="topbar" id="topbar"></header>
 
@@ -100,6 +102,8 @@
     <script src="js/vendor/qrious.js?v=9"></script>
 
     <!-- app modules (urutan penting, karena depedensi antar modul) -->
+    <!-- demo.js wajib sebelum supabase.js: nentuin client asli vs client demo -->
+    <script src="js/demo.js?v=9"></script>
     <script src="js/supabase.js?v=9"></script>
     <script src="js/data.js?v=9"></script>
     <script src="js/utils.js?v=9"></script>
@@ -120,6 +124,8 @@
     <script src="js/pages/dasbor-superadmin.js?v=9"></script>
     <script src="js/pages/pengaturan-platform.js?v=9"></script>
     <script src="js/pages/kelola-pengumuman.js?v=9"></script>
+    <script src="js/pages/akun.js?v=9"></script>
+    <script src="js/pages/beranda.js?v=9"></script>
     
     <!-- posisi terakhir, karena pakai function dari modul lain -->
     <script src="js/app.js?v=9"></script>
