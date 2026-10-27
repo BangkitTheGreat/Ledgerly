@@ -782,8 +782,19 @@ html[data-theme="dark"] .dasbor-shell .sidebar-link.active {
 html[data-theme="dark"] .dasbor-shell .sidebar-user { background: rgba(255, 255, 255, 0.04); }
 html[data-theme="dark"] .dasbor-shell .sidebar-kontrol-btn:hover,
 html[data-theme="dark"] .dasbor-shell .sidebar-kontrol-btn[aria-expanded="true"] { background: rgba(255, 255, 255, 0.06); }
+html[data-theme="dark"] .dasbor-shell .sidebar-footer .sidebar-tema-toggle,
+html[data-theme="dark"] .dasbor-shell .sidebar-logout {
+  background: transparent;
+  color: var(--slate-500);
+}
+html[data-theme="dark"] .dasbor-shell .sidebar-footer .sidebar-tema-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #f1f5f9;
+}
 @media (min-width: 768px) {
-  html[data-theme="dark"] .dasbor-shell .main-content {
+  /* topbar di bingkai: transparan (aturan dark lama ngasih kaca gelap) */
+  html[data-theme="dark"] .dasbor-shell .topbar { background: transparent; }
+  html[data-theme="dark"] .dasbor-shell .aurora-inner {
     background: #0f172a;
     border-color: rgba(148, 163, 184, 0.12);
     box-shadow: 0 12px 40px -20px rgba(0, 0, 0, 0.7);
