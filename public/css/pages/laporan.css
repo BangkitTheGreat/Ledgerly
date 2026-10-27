@@ -87,3 +87,9 @@
   background: var(--emerald-50);
   color: var(--emerald-600);
 }
+
+/* 5 kartu export di grid 2 kolom -> kartu terakhir sendirian & kanannya
+   kosong. kartu ganjil terakhir melebar penuh */
+@media (min-width: 768px) {
+  .export-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+}

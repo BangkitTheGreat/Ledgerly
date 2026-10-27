@@ -337,7 +337,8 @@ var ROUTES = {
   '#kelola-pemilik': { title: 'Kelola Pemilik', init: typeof initKelolaPemilik !== 'undefined' ? initKelolaPemilik : function(){} },
   '#dasbor-superadmin': { title: 'Ikhtisar Sistem', init: typeof initDasborSuperadmin !== 'undefined' ? initDasborSuperadmin : function(){} },
   '#pengaturan-platform': { title: 'Pengaturan Platform', init: typeof initPengaturanPlatform !== 'undefined' ? initPengaturanPlatform : function(){} },
-  '#kelola-pengumuman': { title: 'Kelola Pengumuman', init: typeof initKelolaPengumuman !== 'undefined' ? initKelolaPengumuman : function(){} }
+  '#kelola-pengumuman': { title: 'Kelola Pengumuman', init: typeof initKelolaPengumuman !== 'undefined' ? initKelolaPengumuman : function(){} },
+  '#akun': { title: 'Akun Saya', init: typeof initAkun !== 'undefined' ? initAkun : function(){} }
 };
 
 var halamanSkrg = '#inventaris'; // default
@@ -372,8 +373,8 @@ async function navigasi(hash) {
       hash = '#inventaris';
     }
   } else {
-    // superadmin cuma boleh di halaman superadmin
-    if (halamanSuperadmin.indexOf(hash) === -1) {
+    // superadmin cuma boleh di halaman superadmin (+ halaman akun sendiri)
+    if (halamanSuperadmin.indexOf(hash) === -1 && hash !== '#akun') {
       hash = '#dasbor-superadmin';
     }
   }
@@ -421,6 +422,8 @@ async function navigasi(hash) {
   document.querySelectorAll('.sidebar-link').forEach(function(el) {
     el.classList.toggle('active', el.getAttribute('data-hash') === hash);
   });
+  let akunLink = document.querySelector('.sidebar-akun-link');
+  if (akunLink) akunLink.classList.toggle('active', hash === '#akun');
 
   // update search bar visibility
   if (typeof updateTopbarSearchVisibility === 'function') {

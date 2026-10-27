@@ -159,6 +159,7 @@ function bukaMobileNav() {
     linksHtml += mobileLink('#keputusan', icon('lightbulb', 18), 'Keputusan');
     linksHtml += mobileLink('#pengaturan', icon('settings', 18), 'Pengaturan');
   }
+  linksHtml += mobileLink('#akun', icon('user', 18), 'Akun Saya');
 
   panel.innerHTML = `
     <div class="mobile-nav-header">

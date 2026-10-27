@@ -23,77 +23,78 @@
   border-right: 1px solid var(--slate-200);
   background: #fff;
   position: relative;
-  transition: width 0.2s ease-in-out;
+  z-index: 35; /* menu "Sidebar control" harus di atas konten */
+  transition: width 0.2s ease-in-out, box-shadow 0.2s ease;
 }
 @media (min-width: 768px) { .sidebar { display: flex; } }
+/* teks gak boleh kebungkus pas lebar sidebar lagi beranimasi */
+.sidebar-brand, .sidebar-nav { overflow-x: hidden; }
+.sidebar-link span, .sidebar-brand-text { white-space: nowrap; }
 
-/* Toggle button melayang */
-.sidebar-toggle-btn {
-  position: absolute;
-  right: -13px;
-  top: 20px;
-  z-index: 100;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1px solid var(--slate-200);
-  box-shadow: var(--shadow-sm);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--slate-500);
-  transition: all 0.2s;
-  outline: none;
-  padding: 0;
-}
-.sidebar-toggle-btn:hover {
-  background: var(--slate-50);
-  color: var(--slate-800);
-  border-color: var(--slate-300);
-  box-shadow: var(--shadow-md);
-}
+/* -- mode "Expand on hover": sidebar melayang di atas konten (gak geser
+   layout), sempit 72px, melebar pas di-hover / difokus keyboard -- */
 @media (min-width: 768px) {
-  .sidebar-toggle-btn {
-    display: flex;
-  }
-}
-
-/* Collapsed sidebar layout */
-@media (min-width: 768px) {
-  .sidebar-collapsed .sidebar {
+  .sidebar-mode-hover .sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
     width: 72px;
   }
-  .sidebar-collapsed .sidebar-brand {
+  .sidebar-mode-hover .main-content { margin-left: 72px; }
+  .sidebar-mode-hover .sidebar:hover,
+  .sidebar-mode-hover .sidebar:has(:focus-visible) {
+    width: 256px;
+    box-shadow: 8px 0 30px -12px rgba(15, 23, 42, 0.25);
+  }
+}
+
+/* -- tampilan sempit: mode collapsed, atau mode hover yg lagi gak di-hover (fokus keyboard = tetap lebar) -- */
+@media (min-width: 768px) {
+  .sidebar-collapsed .sidebar { width: 72px; }
+  .sidebar-collapsed .sidebar-brand,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-brand {
     padding: 0;
     justify-content: center;
   }
-  .sidebar-collapsed .sidebar-brand-text {
+  .sidebar-collapsed .sidebar-brand-text,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-brand-text,
+  .sidebar-collapsed .sidebar-brand .sidebar-tema-toggle,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-brand .sidebar-tema-toggle,
+  .sidebar-collapsed .sidebar-link span,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-link span,
+  .sidebar-collapsed .sidebar-user-info,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-user-info {
     display: none;
   }
-  .sidebar-collapsed .sidebar-link {
+  .sidebar-collapsed .sidebar-link,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-link {
     justify-content: center;
     padding: 10px;
   }
-  .sidebar-collapsed .sidebar-link span {
-    display: none;
-  }
-  .sidebar-collapsed .sidebar-user {
+  .sidebar-collapsed .sidebar-user,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-user {
     flex-direction: column;
     gap: 8px;
     align-items: center;
     background: transparent;
-    padding: 8px 0;
+    padding: 4px 0 0;
   }
-  .sidebar-collapsed .sidebar-user-info {
-    display: none;
+  .sidebar-collapsed .sidebar-akun-link,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-akun-link {
+    flex: none;
+    justify-content: center;
   }
-  .sidebar-collapsed .sidebar-logout {
-    margin: 0;
+  .sidebar-collapsed .sidebar-kontrol,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-kontrol {
+    justify-content: center;
+  }
+  /* toggle tema pindah ke atas akun */
+  .sidebar-collapsed .sidebar-tema-bawah,
+  .sidebar-mode-hover .sidebar:not(:hover):not(:has(:focus-visible)) .sidebar-tema-bawah {
+    display: inline-flex;
   }
 }
-
 
 .sidebar-brand {
   display: flex;
@@ -145,10 +146,6 @@
   background: var(--slate-50);
 }
 .sidebar-tema-toggle svg { width: 16px; height: 16px; }
-/* saat collapsed sidebar sempit (72px) -> sembunyiin toggle tema */
-@media (min-width: 768px) {
-  .sidebar-collapsed .sidebar-tema-toggle { display: none; }
-}
 
 .sidebar-nav {
   flex: 1;
@@ -237,6 +234,105 @@
 .sidebar-logout:hover {
   background: #fff;
   color: var(--rose-600);
+}
+
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* -- tombol "Sidebar control" + menu (ala Supabase) -- */
+.sidebar-kontrol {
+  position: relative;
+  display: flex;
+}
+.sidebar-kontrol-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-lg);
+  color: var(--slate-500);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar-kontrol-btn:hover,
+.sidebar-kontrol-btn[aria-expanded="true"] {
+  background: var(--slate-100);
+  color: var(--slate-900);
+}
+.sidebar-mode-menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  z-index: 60;
+  width: 220px;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--slate-200);
+  background: var(--surface, #fff);
+  box-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.25);
+}
+.sidebar-mode-menu[hidden] { display: none; }
+.sidebar-mode-judul {
+  padding: 8px 10px 10px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--slate-200);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--slate-500);
+}
+.sidebar-mode-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--slate-700);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sidebar-mode-opt:hover { background: var(--slate-100); }
+.sidebar-mode-opt.aktif { color: var(--slate-900); font-weight: 600; }
+.sidebar-mode-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sidebar-mode-opt.aktif .sidebar-mode-dot { background: currentColor; }
+.sidebar-kontrol-btn:focus-visible,
+.sidebar-mode-opt:focus-visible,
+.sidebar-akun-link:focus-visible,
+.sidebar-logout:focus-visible {
+  outline: 2px solid var(--indigo-500);
+  outline-offset: 2px;
+}
+
+/* -- toggle tema versi bawah: cuma muncul saat sidebar sempit (di atas akun) -- */
+.sidebar-tema-bawah {
+  display: none;
+  margin: 0 auto;
+}
+
+/* -- avatar + nama = link ke halaman Akun -- */
+.sidebar-akun-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+}
+.sidebar-akun-link:hover .sidebar-user-name { color: var(--indigo-600); }
+.sidebar-akun-link.active .sidebar-avatar,
+.sidebar-akun-link:hover .sidebar-avatar {
+  box-shadow: 0 0 0 2px var(--surface, #fff), 0 0 0 4px var(--indigo-400);
 }
 
 /* ============ TOPBAR ============ */
@@ -1255,4 +1351,15 @@
   .aurora-bg { animation: none; }
   .dasbor-shell .stat-card { transition: none; }
   .dasbor-shell .stat-card:hover { transform: none; }
+}
+
+/* -- grid stat ngikut jumlah kartu: Laporan & Keputusan cuma 3 kartu ->
+   di grid 4 kolom nyisain slot kosong di kanan. 3 kartu = 3 kolom.
+   di bawah 1024 (2 kolom), kartu ganjil terakhir melebar penuh. -- */
+@media (min-width: 1024px) {
+  .stats-row:has(> :last-child:nth-child(3)) { grid-template-columns: repeat(3, 1fr); }
+  .stats-row:has(> :last-child:nth-child(2)) { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1023px) {
+  .stats-row > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }

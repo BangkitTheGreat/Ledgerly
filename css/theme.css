@@ -705,8 +705,10 @@ html[data-theme="dark"] .criterion-item[style*="emerald-600"] {
 /* =============================================
    Dasbor gaya CAPSTONE (css/dasbor.css): versi gelap
    ============================================= */
+/* hampir solid: di gelap, pita aurora tembus ke kartu & ganggu baca (beda
+   dgn light yg aurora-nya pucat). jadi kartu gelap cuma sedikit transparan */
 html[data-theme="dark"] .dasbor-shell .card {
-  background: rgba(30, 41, 59, 0.82);
+  background: rgba(30, 41, 59, 0.96);
   border-color: rgba(148, 163, 184, 0.14);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
 }

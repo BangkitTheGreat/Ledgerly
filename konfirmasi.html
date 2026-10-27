@@ -114,7 +114,10 @@
           // datang dr register.js -> tampilin email tujuan (disimpan di sessionStorage, bukan URL)
           var email = null;
           try { email = sessionStorage.getItem('ledgerly_email_daftar'); } catch (e) {}
-          if (email) document.getElementById('email-tujuan').textContent = email;
+          // dibuka langsung tanpa daftar & bukan dr link email -> gak ada yg perlu
+          // dikonfirmasi, arahin ke halaman daftar (bukan nampilin "cek email" palsu)
+          if (!email) { location.replace('register.html'); return; }
+          document.getElementById('email-tujuan').textContent = email;
           return;
         }
 
