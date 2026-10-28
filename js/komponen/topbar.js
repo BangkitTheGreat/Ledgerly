@@ -165,16 +165,15 @@ function bukaMobileNav() {
   panel.innerHTML = `
     <div class="mobile-nav-header">
       <div style="display:flex; align-items:center; gap:10px;">
-        <div style="display:grid; place-items:center; width:32px; height:32px; border-radius:10px; background:linear-gradient(135deg, var(--indigo-500), var(--purple-600)); color:#fff; flex-shrink:0;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            <polyline points="3.29 7 12 12 20.71 7"/>
-            <line x1="12" y1="22" x2="12" y2="12"/>
-          </svg>
+        <!-- logo & teks brand sama persis kaya sidebar desktop (sidebar.js) -->
+        <div class="sidebar-logo" style="flex-shrink:0;">
+          <div style="padding: 8px">
+            <img src="assets/logo.svg" alt="Ledgerly Logo" style="width: 100%; height: 100%; filter: brightness(0) invert(1)" />
+          </div>
         </div>
-        <div>
-          <div style="font-size:14px; font-weight:700; color:var(--slate-900);">Ledgerly</div>
-          <div style="font-size:11px; color:var(--slate-400);">Sistem UMKM</div>
+        <div class="sidebar-brand-text">
+          <div class="sidebar-app-name">Ledgerly</div>
+          <div class="sidebar-app-sub">Sistem UMKM</div>
         </div>
       </div>
       <div style="display:flex; align-items:center; gap:6px;">
