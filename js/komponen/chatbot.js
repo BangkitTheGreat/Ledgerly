@@ -393,6 +393,10 @@ async function tanyaGeminiAI(pesan, onChunk) {
       break;
     }
 
+    // 403 = kuota harian paket habis (dihitung server)
+    if (response.status === 403) {
+      return 'Batas harian kueri Chatbot AI tercapai! Paket Starter gratis hanya mendukung hingga 10 kueri per hari.\n\nSilakan kunjungi menu Pengaturan untuk menghubungi Admin jika Anda ingin upgrade ke paket Profesional untuk menikmati akses Chatbot AI tanpa batas.';
+    }
     if (!response.ok) {
       throw new Error(`Response API error status ${response.status}`);
     }

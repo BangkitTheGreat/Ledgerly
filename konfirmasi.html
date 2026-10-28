@@ -135,7 +135,9 @@
           session = res.data ? res.data.session : null;
         } catch (e) {}
 
-        if (session) {
+        // pkce: ?code= cuma dikasih supabase SETELAH email terverifikasi. kalau link
+        // dibuka di browser lain, code gak bisa ditukar jadi sesi, tapi email tetap sah.
+        if (session || params.has('code')) {
           // ponytail: sesi dr link dibuang, user login manual lewat tombol Masuk
           try { await window.supabaseClient.auth.signOut(); } catch (e) {}
           try { sessionStorage.removeItem('ledgerly_email_daftar'); } catch (e) {}

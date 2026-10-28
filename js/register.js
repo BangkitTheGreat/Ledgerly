@@ -280,8 +280,9 @@ async function handleRegister(e) {
             nama: name,
             bisnis: bisnis,
             role: 'pemilik',
-            noTelp: waNum,
-            paket: paketDb
+            noTelp: waNum
+            // paket gak dikirim: RLS cuma terima starter dr client; trial business
+            // dibuat trigger handle_new_user di server (biasanya baris ini cuma fallback)
           });
         
         if (profileError) {

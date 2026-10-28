@@ -173,11 +173,11 @@ function renderRowsTransaksi(list) {
     // escape nilai transaksi sblm masuk innerHTML/atribut. produkNama itu
     // snapshot yg asalnya dr nama produk (bisa diisi via import/chatbot).
     let produkNamaEsc = escapeHtml(t.produkNama);
-    let produkNamaAttr = escapeAttr(t.produkNama);
+    let produkNamaAttr = escapeJsAttr(t.produkNama);
     let metodeEsc = escapeHtml(t.metode);
-    let idAttr = escapeAttr(t.id);
-    let produkIdAttr = escapeAttr(t.produkId);
-    let tipeAttr = escapeAttr(t.tipe);
+    let idAttr = escapeJsAttr(t.id);
+    let produkIdAttr = escapeJsAttr(t.produkId);
+    let tipeAttr = escapeJsAttr(t.tipe);
     return `
       <tr>
         <td>${formatTanggalWaktu(t.tanggal)}</td>
@@ -189,7 +189,7 @@ function renderRowsTransaksi(list) {
         <td><span class="badge badge-neutral">${metodeEsc}</span></td>
         <td class="text-center">
           <div style="display:flex; justify-content:center; gap:4px;">
-            <button class="btn btn-secondary btn-xs" style="padding:2px 6px; font-size:11px;" onclick="lihatCatatanTx('${escapeAttr(t.catatan || '')}', '${produkNamaAttr}')" ${!adaCatatan ? 'disabled style="opacity:0.4; padding:2px 6px; font-size:11px;"' : ''} title="${adaCatatan ? 'Lihat Catatan' : 'Tidak ada catatan'}">
+            <button class="btn btn-secondary btn-xs" style="padding:2px 6px; font-size:11px;" onclick="lihatCatatanTx('${escapeJsAttr(t.catatan || '')}', '${produkNamaAttr}')" ${!adaCatatan ? 'disabled style="opacity:0.4; padding:2px 6px; font-size:11px;"' : ''} title="${adaCatatan ? 'Lihat Catatan' : 'Tidak ada catatan'}">
               ${icon('eye', 12)} Catatan
             </button>
             <button class="btn btn-danger btn-xs" style="padding:2px 6px;" onclick="konfirmasiHapusTransaksi('${idAttr}', '${produkNamaAttr}', ${t.jumlah}, '${tipeAttr}', '${produkIdAttr}')">
@@ -364,7 +364,7 @@ function initTransaksiSearch() {
 function konfirmasiHapusTransaksi(txId, produkNama, jumlah, tipe, produkId) {
   konfirmasiUI({
     judul: 'Batalkan transaksi ini?',
-    pesan: 'Transaksi <b>' + produkNama + ' (' + tipe + ')</b> sejumlah <b>' + jumlah + ' unit</b> akan dibatalkan. Stok produk terkait akan disesuaikan kembali.',
+    pesan: 'Transaksi <b>' + escapeHtml(produkNama) + ' (' + escapeHtml(tipe) + ')</b> sejumlah <b>' + escapeHtml(jumlah) + ' unit</b> akan dibatalkan. Stok produk terkait akan disesuaikan kembali.',
     teksYa: 'Ya, Batalkan',
     onYa: function() { hapusTransaksi(txId, jumlah, tipe, produkId); }
   });

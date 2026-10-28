@@ -132,6 +132,7 @@ function logout() {
           console.warn("Gagal logout dari Supabase session:", err.message);
         }
       }
+      await hapusSnapshotOffline();
       localStorage.removeItem('ledgerly_user');
       store.user = null;
       window.location.href = 'login.html';
@@ -820,10 +821,29 @@ function bukaIDB() {
   });
 }
 
+// snapshot diikat ke akun (key per user_id) biar akun lain di browser yg sama
+// gak bisa kebaca/kemuat. superadmin gak disimpen (datanya semua tenant).
+function kunciSnapshot() {
+  return store.user && store.user.id ? 'data_' + store.user.id : null;
+}
+
+// dipanggil pas logout: buang semua snapshot di browser ini
+function hapusSnapshotOffline() {
+  return bukaIDB().then(function(db) {
+    return new Promise(function(resolve) {
+      var tx = db.transaction(_IDB_STORE, 'readwrite');
+      tx.objectStore(_IDB_STORE).clear();
+      tx.oncomplete = tx.onerror = function() { resolve(); };
+    });
+  }).catch(function() {});
+}
+
 // simpan snapshot produk + transaksi + kategori ke IndexedDB
 function simpanSnapshotOffline() {
   // demo jgn nimpa snapshot offline punya akun asli di browser ini
   if (window.LEDGERLY_DEMO) return;
+  var kunci = kunciSnapshot();
+  if (!kunci || store.user.role === 'superadmin') return;
   bukaIDB().then(function(db) {
     var tx = db.transaction(_IDB_STORE, 'readwrite');
     var st = tx.objectStore(_IDB_STORE);
@@ -832,7 +852,7 @@ function simpanSnapshotOffline() {
       transaksi: store.transaksi,
       kategoriList: store.kategoriList,
       disimpanPada: new Date().toISOString()
-    }, 'data');
+    }, kunci);
   }).catch(function(err) {
     console.warn('Gagal simpan snapshot offline:', err.message);
   });
@@ -840,10 +860,12 @@ function simpanSnapshotOffline() {
 
 // muat snapshot dari IndexedDB (dipanggil pas sinkronisasi online gagal)
 function muatSnapshotOffline() {
+  var kunci = kunciSnapshot();
+  if (!kunci) return Promise.resolve(null);
   return bukaIDB().then(function(db) {
     return new Promise(function(resolve) {
       var tx = db.transaction(_IDB_STORE, 'readonly');
-      var req = tx.objectStore(_IDB_STORE).get('data');
+      var req = tx.objectStore(_IDB_STORE).get(kunci);
       req.onsuccess = function() { resolve(req.result || null); };
       req.onerror = function() { resolve(null); };
     });
@@ -856,6 +878,7 @@ function initApp() {
   if (window.supabaseClient) {
     window.supabaseClient.auth.onAuthStateChange(function(event, session) {
       if (event === 'SIGNED_OUT' || !session) {
+        hapusSnapshotOffline();
         localStorage.removeItem('ledgerly_user');
         store.user = null;
         // Hanya redirect jika sedang di dalam dashboard/dasbor.html

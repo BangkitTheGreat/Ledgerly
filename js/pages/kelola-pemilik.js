@@ -77,8 +77,8 @@ function renderRowsPemilik(data) {
       let bisnisEsc = escapeHtml(u.bisnis) || "—";
       let roleEsc = escapeHtml(u.role) || "pemilik";
       // buat argumen onclick -> dlm atribut kutip ganda yg isinya string kutip tunggal
-      let userIdAttr = escapeAttr(u.user_id);
-      let namaAttr = escapeAttr(u.nama);
+      let userIdAttr = escapeJsAttr(u.user_id);
+      let namaAttr = escapeJsAttr(u.nama);
 
       // Paket Badge — bedain trial vs langganan + tampilin sisa hari
       let paketBadge = "badge-neutral";
@@ -170,7 +170,7 @@ function bukaModalPemilik(userId) {
   let emailVal = escapeAttr(target.email);
   let bisnisVal = escapeAttr(target.bisnis);
   let notelpVal = escapeAttr(target.noTelp);
-  let userIdAttr = escapeAttr(userId || "");
+  let userIdAttr = escapeJsAttr(userId || "");
 
   let modalHtml = `
     <div class="modal-overlay" id="modal-pemilik-container" onclick="if(event.target.id==='modal-pemilik-container') tutupModalPemilik()">
@@ -363,7 +363,7 @@ async function simpanPemilik(e, userId) {
 function konfirmasiHapusPemilik(userId, nama) {
   konfirmasiUI({
     judul: 'Hapus akun "' + nama + '"?',
-    pesan: 'Data profil pemilik ini akan dihapus permanen dari database.',
+    pesan: 'Akun login, profil, dan seluruh data toko pemilik ini akan dihapus permanen.',
     teksYa: 'Ya, Hapus',
     onYa: function() { hapusPemilik(userId); }
   });

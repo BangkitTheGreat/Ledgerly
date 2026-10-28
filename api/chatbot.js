@@ -57,6 +57,21 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'Gemini API Key is not configured on the server.' });
   }
 
+  // kuota paket dihitung di DB (rpc pakai_kuota_chat, starter 10/hari),
+  // bukan di localStorage browser. 403 (bukan 429) biar client gak retry.
+  try {
+    const kuotaResp = await fetch(SUPABASE_URL + '/rest/v1/rpc/pakai_kuota_chat', {
+      method: 'POST',
+      headers: { apikey: ANON_KEY, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
+      body: '{}'
+    });
+    if (!kuotaResp.ok || (await kuotaResp.json()) !== true) {
+      return res.status(403).json({ error: 'kuota_habis' });
+    }
+  } catch (e) {
+    return res.status(503).json({ error: 'Gagal cek kuota.' });
+  }
+
   // Menggunakan streamGenerateContent untuk streaming real-time
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?key=${apiKey}`;
 

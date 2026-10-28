@@ -62,11 +62,25 @@ function escapeHtml(val) {
     .replace(/'/g, '&#39;');
 }
 
-// escape buat nilai yg masuk ke dlm atribut html yg dibungkus kutip tunggal,
-// mis. onclick="fungsi('NILAI')". selain escape html, kutip tunggal & backslash
-// juga di-handle biar gak bisa kabur dr string js-nya.
+// escape buat nilai atribut html biasa, mis. value="NILAI" / data-x="NILAI".
+// JANGAN dipake buat string js di dlm onclick: entity html di-decode browser
+// sblm js-nya jalan, jadi &#39; balik jadi ' -> pake escapeJsAttr.
 function escapeAttr(val) {
   return escapeHtml(val).replace(/\\/g, '&#92;');
+}
+
+// escape buat string js berkutip tunggal di dlm atribut event handler,
+// mis. onclick="fungsi('NILAI')". escape js dulu (\ ' " newline </),
+// baru escape html; setelah browser decode entity, js tetap liat \' dst.
+function escapeJsAttr(val) {
+  var s = String(val == null ? '' : val)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\x22')
+    .replace(/\r/g, '\\r')
+    .replace(/\n/g, '\\n')
+    .replace(/<\//g, '<\\/');
+  return escapeHtml(s);
 }
 
 // escape karakter utk csv
@@ -165,12 +179,14 @@ function dapatkanChatKey() {
 // pengganti confirm() bawaan browser yg jelek. dipake di mana2: logout,
 // hapus produk, batal transaksi, dll. tinggal kasih opsi + callback onYa.
 // contoh: konfirmasiUI({ judul:'Hapus?', pesan:'yakin?', onYa: function(){...} })
+// judul/teksYa/teksBatal = teks biasa (di-escape di sini). pesan = HTML (boleh <b>),
+// jadi data dr DB yg masuk ke pesan WAJIB di-escapeHtml dulu sama pemanggilnya.
 function konfirmasiUI(opt) {
   opt = opt || {};
-  var judul = opt.judul || 'Konfirmasi';
+  var judul = escapeHtml(opt.judul || 'Konfirmasi');
   var pesan = opt.pesan || 'Apakah Anda yakin?';
-  var teksYa = opt.teksYa || 'Ya';
-  var teksBatal = opt.teksBatal || 'Batal';
+  var teksYa = escapeHtml(opt.teksYa || 'Ya');
+  var teksBatal = escapeHtml(opt.teksBatal || 'Batal');
   var bahaya = opt.bahaya !== false; // default tombol merah (danger)
   var onYa = typeof opt.onYa === 'function' ? opt.onYa : function() {};
 

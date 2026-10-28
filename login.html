@@ -195,6 +195,27 @@
               </form>
             </div>
 
+            <!-- ================= STATE 4: SANDI BARU (dr link reset) ================= -->
+            <div id="panel-reset-pw" style="display: none">
+              <h2>Atur Sandi Baru 🔒</h2>
+              <p class="subtitle">Buat kata sandi baru untuk akun Anda. Semua perangkat lain akan otomatis keluar.</p>
+
+              <form class="login-form" id="form-reset-pw" onsubmit="handleResetPassword(event)">
+                <div>
+                  <label class="form-label" for="reset-password">Kata Sandi Baru</label>
+                  <input class="form-input" type="password" id="reset-password" minlength="8" autocomplete="new-password" placeholder="Minimal 8 karakter" required />
+                </div>
+                <div>
+                  <label class="form-label" for="reset-password2">Ulangi Kata Sandi Baru</label>
+                  <input class="form-input" type="password" id="reset-password2" minlength="8" autocomplete="new-password" placeholder="Ketik ulang kata sandi" required />
+                </div>
+
+                <div id="reset-error" class="login-error" style="display: none"></div>
+
+                <button type="submit" class="login-submit">Simpan Kata Sandi Baru</button>
+              </form>
+            </div>
+
             <!-- ================= STATE 3: FORGOT PASSWORD ================= -->
             <div id="panel-forgot-pw" style="display: none">
               <h2>Lupa Password? 🔑</h2>
@@ -252,6 +273,11 @@
       // init: tangani 3 kondisi -> (a) udah login normal, (b) baru balik dr
       // login Google (cek gate "harus terdaftar"), (c) buka login biasa.
       (function () {
+        // balik dr link reset sandi -> tampilin form sandi baru, JANGAN auto-login
+        if (new URLSearchParams(location.search).get("reset") === "1") {
+          switchState("reset-pw");
+          return;
+        }
         let ud = localStorage.getItem("ledgerly_user");
         if (ud) {
           window.location.href = "dasbor.html";
@@ -293,10 +319,37 @@
       function switchState(stateName) {
         document.getElementById("panel-login").style.display = stateName === "login" ? "block" : "none";
         document.getElementById("panel-forgot-pw").style.display = stateName === "forgot-pw" ? "block" : "none";
+        document.getElementById("panel-reset-pw").style.display = stateName === "reset-pw" ? "block" : "none";
 
         // reset errors
         document.getElementById("login-error").style.display = "none";
         document.getElementById("forgot-error").style.display = "none";
+        document.getElementById("reset-error").style.display = "none";
+      }
+
+      async function handleResetPassword(e) {
+        e.preventDefault();
+        var pw = document.getElementById("reset-password").value;
+        var pw2 = document.getElementById("reset-password2").value;
+        var errDiv = document.getElementById("reset-error");
+        errDiv.style.color = "";
+        errDiv.style.borderColor = "";
+        errDiv.style.background = "";
+        errDiv.style.display = "block";
+        if (pw !== pw2) { errDiv.textContent = "Kedua kata sandi tidak sama."; return; }
+
+        errDiv.textContent = "Menyimpan kata sandi baru...";
+        var res = await setPasswordBaru(pw);
+        if (!res.ok) { errDiv.textContent = res.pesan; return; }
+
+        history.replaceState(null, "", location.pathname); // buang ?reset=1
+        switchState("login");
+        var ok = document.getElementById("login-error");
+        ok.textContent = "Kata sandi berhasil diganti. Silakan masuk dengan kata sandi baru.";
+        ok.style.display = "block";
+        ok.style.color = "var(--emerald-700)";
+        ok.style.borderColor = "var(--emerald-200)";
+        ok.style.background = "var(--emerald-50)";
       }
 
       async function handleLogin(e) {

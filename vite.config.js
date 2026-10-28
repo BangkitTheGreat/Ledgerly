@@ -103,6 +103,14 @@ export default defineConfig(({ mode }) => {
                 let apiKey = env.VITE_GEMINI_API_KEY;
                 if (!apiKey) { res.statusCode = 500; res.end('Gemini API Key belum diset di .env'); return; }
 
+                // kuota paket di DB (mirror api/chatbot.js)
+                let kuotaR = await fetch(SUPABASE_URL + '/rest/v1/rpc/pakai_kuota_chat', {
+                  method: 'POST',
+                  headers: { apikey: ANON_KEY, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
+                  body: '{}'
+                });
+                if (!kuotaR.ok || (await kuotaR.json()) !== true) { res.statusCode = 403; res.end('kuota_habis'); return; }
+
                 let url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?key=' + apiKey;
                 let r = await fetch(url, {
                   method: 'POST',
