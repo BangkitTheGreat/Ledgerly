@@ -116,6 +116,8 @@ function renderInventarisTable() {
           let idAttr = escapeAttr(p.id);
           let namaAttr = escapeAttr(p.nama);
           let qrAttr = escapeAttr(kodeQR);
+          let idJs = escapeJsAttr(p.id);
+          let namaJs = escapeJsAttr(p.nama);
           return `
             <tr>
               <td class="text-center">
@@ -138,10 +140,10 @@ function renderInventarisTable() {
               </td>
               <td class="text-center">
                 <div style="display:flex; justify-content:center; gap:6px;">
-                  <button class="btn btn-secondary btn-xs" style="padding:4px;" onclick="bukaModalProduk('${idAttr}')" title="Edit">
+                  <button class="btn btn-secondary btn-xs" style="padding:4px;" onclick="bukaModalProduk('${idJs}')" title="Edit">
                     ${icon('settings', 12)}
                   </button>
-                  <button class="btn btn-danger btn-xs" style="padding:4px;" onclick="konfirmasiHapusProduk('${idAttr}', '${namaAttr}')" title="Hapus">
+                  <button class="btn btn-danger btn-xs" style="padding:4px;" onclick="konfirmasiHapusProduk('${idJs}', '${namaJs}')" title="Hapus">
                     ${icon('x', 12)}
                   </button>
                 </div>

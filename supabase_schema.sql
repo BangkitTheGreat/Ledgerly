@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS "Users" (
   bisnis           text,
   role             text NOT NULL DEFAULT 'pemilik',   -- 'pemilik' | 'superadmin'
   "noTelp"         bigint,
-  paket            text NOT NULL DEFAULT 'starter',   -- 'starter' | 'business' | 'enterprise'
+  paket            text NOT NULL DEFAULT 'starter'
+                   CHECK (paket IN ('starter', 'business', 'enterprise')),
   tgl_expired      timestamptz,
   status_langganan text,
   created_at       timestamptz NOT NULL DEFAULT now()
@@ -102,16 +103,24 @@ $$;
 -- register.js kirim nama/bisnis/noTelp/paket di options.data -> raw_user_meta_data.
 -- Skip kalau dibuat admin (/api/create-user insert profil sendiri) atau login Google
 -- tanpa metadata (gate cekKembaliOAuth harus tetap nolak email yg belum daftar).
+-- paket dr metadata itu input user: cuma 'business' yg dihormati & selalu jadi
+-- trial 7 hari dr server. enterprise/nilai lain -> starter (enterprise dikasih admin).
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
-DECLARE m jsonb := NEW.raw_user_meta_data;
+DECLARE
+  m jsonb := NEW.raw_user_meta_data;
+  trial boolean := (m->>'paket') = 'business';
 BEGIN
   IF m->>'created_by' = 'admin' OR m->>'nama' IS NULL THEN
     RETURN NEW;
   END IF;
-  INSERT INTO "Users" (user_id, email, nama, bisnis, "noTelp", paket, role)
+  INSERT INTO "Users" (user_id, email, nama, bisnis, "noTelp", paket, tgl_expired, status_langganan, role)
   VALUES (NEW.id, NEW.email, m->>'nama', m->>'bisnis',
-          NULLIF(m->>'noTelp', '')::bigint, COALESCE(m->>'paket', 'starter'), 'pemilik')
+          NULLIF(m->>'noTelp', '')::bigint,
+          CASE WHEN trial THEN 'business' ELSE 'starter' END,
+          CASE WHEN trial THEN now() + interval '7 days' END,
+          CASE WHEN trial THEN 'trial' END,
+          'pemilik')
   ON CONFLICT DO NOTHING; -- jangan pernah gagalin signUp
   RETURN NEW;
 END;
@@ -175,8 +184,11 @@ DROP POLICY IF EXISTS users_update ON "Users";
 DROP POLICY IF EXISTS users_delete ON "Users";
 CREATE POLICY users_select ON "Users" FOR SELECT TO authenticated
   USING (user_id = auth.uid() OR email = auth.jwt()->>'email' OR public.is_superadmin());
+-- insert dr client cuma boleh profil starter polos; paket/trial diatur trigger/superadmin
 CREATE POLICY users_insert ON "Users" FOR INSERT TO authenticated
-  WITH CHECK ((user_id = auth.uid() AND role = 'pemilik') OR public.is_superadmin());
+  WITH CHECK ((user_id = auth.uid() AND role = 'pemilik' AND paket = 'starter'
+               AND tgl_expired IS NULL AND status_langganan IS NULL)
+              OR public.is_superadmin());
 CREATE POLICY users_update ON "Users" FOR UPDATE TO authenticated
   USING (user_id = auth.uid() OR public.is_superadmin());
 CREATE POLICY users_delete ON "Users" FOR DELETE TO authenticated

@@ -146,7 +146,7 @@ async function simpanPengumuman(e, id) {
 function konfirmasiHapusPengumuman(id, judul) {
   konfirmasiUI({
     judul: 'Hapus pengumuman?',
-    pesan: 'Pengumuman "' + judul + '" akan dihapus permanen dan tidak lagi tampil di halaman pemilik.',
+    pesan: 'Pengumuman "' + escapeHtml(judul) + '" akan dihapus permanen dan tidak lagi tampil di halaman pemilik.',
     teksYa: 'Ya, Hapus',
     onYa: function() { hapusPengumuman(id); }
   });
