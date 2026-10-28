@@ -16,7 +16,7 @@
    ============================================= */
 
 // BUMP versi ini tiap kali strategi cache berubah -> cache lama auto-dihapus
-var CACHE_NAME = 'ledgerly-v3';
+var CACHE_NAME = 'ledgerly-v4';
 
 // aset inti yg di-precache pas install (yg URL-nya stabil/tanpa query)
 var ASET_INTI = [
