@@ -716,6 +716,10 @@ body {
 /* -- mockup dashboard -- */
 .mockup-wrapper {
   margin-top: 64px;
+  /* hero-inner itu flex align-items:center -> tanpa width/min-width ini
+     mockup melebar ngikutin isinya & luber ke kanan di HP <360px */
+  width: 100%;
+  min-width: 0;
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
@@ -777,7 +781,17 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
+/* url kepotong "..." duluan, pill Cloud Sync tetap 1 baris */
+.mockup-toolbar { gap: 8px; }
+.mockup-toolbar > div:first-child { min-width: 0; }
+.mockup-dots { flex-shrink: 0; }
+.mockup-url { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mockup-sync { white-space: nowrap; flex-shrink: 0; }
+.mockup-stats > * { min-width: 0; }
+.mockup-product-row .units,
+.mockup-product-row .revenue { white-space: nowrap; }
 
 .mockup-dot {
   width: 12px;

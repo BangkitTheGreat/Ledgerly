@@ -1474,3 +1474,8 @@
   .dasbor-shell .tabel th,
   .dasbor-shell .tabel td { white-space: nowrap; }
 }
+@media (max-width: 640px) {
+  /* laporan: picker periode (min-width 240 inline) + Reset gak boleh luber */
+  .custom-card .form-group:has(#drp-laporan) { display: flex; gap: 8px; width: 100%; margin-left: 0; }
+  #drp-laporan { flex: 1; min-width: 0 !important; }
+}

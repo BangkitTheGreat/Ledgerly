@@ -512,3 +512,11 @@
   background: linear-gradient(135deg, var(--indigo-600), var(--indigo-800), var(--slate-900));
   padding: 64px;
 }
+
+/* HP sempit (<400px): widget Turnstile minimal 300px, padding 24px kiri-kanan
+   bikin panel 348px > layar 344px & kegeser. tipisin padding + izinin kolom
+   grid nyusut. */
+.login-grid > * { min-width: 0; }
+@media (max-width: 400px) {
+  .login-form-panel { padding: 24px 16px; }
+}
