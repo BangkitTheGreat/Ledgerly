@@ -363,7 +363,7 @@ async function simpanPemilik(e, userId) {
 function konfirmasiHapusPemilik(userId, nama) {
   konfirmasiUI({
     judul: 'Hapus akun "' + nama + '"?',
-    pesan: 'Data profil pemilik ini akan dihapus permanen dari database.',
+    pesan: 'Akun login, profil, dan seluruh data toko pemilik ini akan dihapus permanen.',
     teksYa: 'Ya, Hapus',
     onYa: function() { hapusPemilik(userId); }
   });

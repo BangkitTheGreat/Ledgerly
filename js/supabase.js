@@ -9,7 +9,12 @@ const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
 // Inisialisasi client (function dari Supabase Library).
 // mode demo (js/demo.js): pakai client palsu in-memory, client asli GAK dibuat
 // sama sekali -> dijamin gak ada request/token ke database.
-const db = window.LEDGERLY_DEMO ? window.buatClientDemo() : window.supabase.createClient(supabaseUrl, supabaseKey);
+// flowType pkce: sesi dr link email/OAuth cuma bisa ditukar di browser yg
+// memulainya (ada code_verifier), jadi link #access_token buatan org lain
+// gak bisa "nyelipin" akunnya ke browser korban (login CSRF).
+const db = window.LEDGERLY_DEMO
+  ? window.buatClientDemo()
+  : window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { flowType: 'pkce' } });
 
 // Tempel ke window biar global akses di module lain
 window.supabaseClient = db;
@@ -216,6 +221,26 @@ async function cekKembaliOAuth() {
   return { status: 'ok' };
 }
 
+// dipanggil dr form sandi baru di login.html?reset=1. sesi recovery udah
+// dibuat supabase-js dr ?code= di URL. habis ganti sandi, SEMUA sesi dicabut
+// (scope global) biar yg pegang sandi lama/sesi lama ketendang.
+async function setPasswordBaru(passwordBaru) {
+  if (!window.supabaseClient) return { ok: false, pesan: 'Koneksi ke server tidak tersedia.' };
+  try {
+    const { data } = await window.supabaseClient.auth.getSession();
+    if (!data || !data.session) {
+      return { ok: false, pesan: 'Tautan atur ulang tidak valid atau sudah kedaluwarsa. Buka tautan dari email di browser yang sama saat meminta reset, atau minta tautan baru.' };
+    }
+    const { error } = await window.supabaseClient.auth.updateUser({ password: passwordBaru });
+    if (error) throw error;
+    try { await window.supabaseClient.auth.signOut({ scope: 'global' }); } catch (e) {}
+    localStorage.removeItem('ledgerly_user');
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, pesan: err.message || 'Gagal menyimpan kata sandi baru.' };
+  }
+}
+
 async function resetPassword(email) {
   if (window.supabaseClient) {
     try {
@@ -228,7 +253,8 @@ async function resetPassword(email) {
       }
 
       const { data, error } = await window.supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/login.html',
+        // ?reset=1 -> login.html nampilin form sandi baru (bukan langsung login)
+        redirectTo: window.location.origin + '/login.html?reset=1',
         captchaToken: captchaToken
       });
       if (error) throw error;

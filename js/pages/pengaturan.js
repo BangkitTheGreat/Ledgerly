@@ -371,6 +371,13 @@ window.tanganiInputWA = async function(val) {
         }
       } catch (err) {
         console.warn("Gagal memperbarui nomor WhatsApp ke database:", err.message);
+        // 23505 = nomor udah dipakai akun lain (noTelp UNIQUE, jadi identitas bot WA)
+        if (err.code === '23505') {
+          indicatorEl.innerHTML = '<span style="color: var(--rose-500); font-weight: bold; font-size: 14px;">✗</span>';
+          errorEl.textContent = 'Nomor ini sudah dipakai akun lain.';
+          errorEl.style.color = 'var(--rose-600)';
+          errorEl.style.display = 'block';
+        }
       }
     }
   } else {

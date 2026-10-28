@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS "Users" (
   nama             text,
   bisnis           text,
   role             text NOT NULL DEFAULT 'pemilik',   -- 'pemilik' | 'superadmin'
-  "noTelp"         bigint,
+  "noTelp"         bigint CONSTRAINT users_notelp_key UNIQUE, -- identitas bot WA, gak boleh dobel
   paket            text NOT NULL DEFAULT 'starter'
                    CHECK (paket IN ('starter', 'business', 'enterprise')),
   tgl_expired      timestamptz,
@@ -110,13 +110,15 @@ RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
 DECLARE
   m jsonb := NEW.raw_user_meta_data;
   trial boolean := (m->>'paket') = 'business';
+  tel bigint := NULLIF(m->>'noTelp', '')::bigint;
 BEGIN
   IF m->>'created_by' = 'admin' OR m->>'nama' IS NULL THEN
     RETURN NEW;
   END IF;
+  -- nomor yg udah dipakai org lain dikosongin (biar profil tetap kebikin)
+  IF EXISTS (SELECT 1 FROM "Users" WHERE "noTelp" = tel) THEN tel := NULL; END IF;
   INSERT INTO "Users" (user_id, email, nama, bisnis, "noTelp", paket, tgl_expired, status_langganan, role)
-  VALUES (NEW.id, NEW.email, m->>'nama', m->>'bisnis',
-          NULLIF(m->>'noTelp', '')::bigint,
+  VALUES (NEW.id, NEW.email, m->>'nama', m->>'bisnis', tel,
           CASE WHEN trial THEN 'business' ELSE 'starter' END,
           CASE WHEN trial THEN now() + interval '7 days' END,
           CASE WHEN trial THEN 'trial' END,
@@ -133,7 +135,8 @@ FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- ---------- TRIGGER: cegah pemilik naikin role/paket sendiri ----------
 -- Pemilik boleh update profil sendiri (nama, bisnis, noTelp) & auto-downgrade ke starter,
--- tapi gak boleh jadi superadmin / upgrade paket lewat console browser.
+-- tapi gak boleh jadi superadmin / upgrade paket / ganti email lewat console browser.
+-- (email = kunci lookup profil; kalau bisa diganti, pemilik bisa "nyerobot" email org lain)
 CREATE OR REPLACE FUNCTION public.guard_users_update()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
 BEGIN
@@ -141,9 +144,10 @@ BEGIN
     RETURN NEW; -- service_role / SQL editor / superadmin bebas
   END IF;
   IF NEW.role IS DISTINCT FROM OLD.role
+     OR NEW.email IS DISTINCT FROM OLD.email
      OR (NEW.paket IS DISTINCT FROM OLD.paket AND NEW.paket <> 'starter')
      OR (NEW.tgl_expired IS DISTINCT FROM OLD.tgl_expired AND NEW.tgl_expired IS NOT NULL) THEN
-    RAISE EXCEPTION 'Tidak diizinkan mengubah role/paket';
+    RAISE EXCEPTION 'Tidak diizinkan mengubah role/paket/email';
   END IF;
   RETURN NEW;
 END;
@@ -153,6 +157,77 @@ DROP TRIGGER IF EXISTS trg_guard_users_update ON "Users";
 CREATE TRIGGER trg_guard_users_update
 BEFORE UPDATE ON "Users"
 FOR EACH ROW EXECUTE FUNCTION public.guard_users_update();
+
+-- ---------- PAKET EFEKTIF (dipakai trigger & kuota; gak dibuka ke client) ----------
+-- business yg expired / tanpa tgl_expired dihitung starter. superadmin = tanpa batas.
+CREATE OR REPLACE FUNCTION public.paket_efektif(uid uuid)
+RETURNS text LANGUAGE sql STABLE SECURITY DEFINER SET search_path = public AS $$
+  SELECT COALESCE((
+    SELECT CASE
+      WHEN role = 'superadmin' THEN 'enterprise'
+      WHEN paket = 'business' AND (tgl_expired IS NULL OR tgl_expired < now()) THEN 'starter'
+      ELSE paket END
+    FROM "Users" WHERE user_id = uid), 'starter');
+$$;
+
+-- ---------- KUOTA CHATBOT (server-side) ----------
+-- api/chatbot.js manggil rpc ini pake JWT user sblm nembak Gemini.
+CREATE TABLE IF NOT EXISTS "Chat_Usage" (
+  user_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  hari    date NOT NULL,
+  jumlah  int  NOT NULL DEFAULT 0,
+  PRIMARY KEY (user_id, hari)
+);
+
+CREATE OR REPLACE FUNCTION public.pakai_kuota_chat()
+RETURNS boolean LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
+DECLARE uid uuid := auth.uid(); n int;
+BEGIN
+  IF uid IS NULL THEN RETURN false; END IF;
+  IF public.paket_efektif(uid) <> 'starter' THEN RETURN true; END IF;
+  INSERT INTO "Chat_Usage" (user_id, hari, jumlah)
+  VALUES (uid, (now() AT TIME ZONE 'Asia/Jakarta')::date, 1)
+  ON CONFLICT (user_id, hari) DO UPDATE SET jumlah = "Chat_Usage".jumlah + 1
+  RETURNING jumlah INTO n;
+  RETURN n <= 10; -- starter: 10 kueri/hari (WIB)
+END;
+$$;
+
+-- ---------- BATAS 50 PRODUK STARTER ----------
+CREATE OR REPLACE FUNCTION public.batas_produk_starter()
+RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
+BEGIN
+  IF public.paket_efektif(NEW.user_id) = 'starter'
+     AND (SELECT count(*) FROM "Products" WHERE user_id = NEW.user_id) >= 50 THEN
+    RAISE EXCEPTION 'Batas 50 produk paket Starter tercapai' USING ERRCODE = 'P0001';
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS trg_batas_produk_starter ON "Products";
+CREATE TRIGGER trg_batas_produk_starter
+BEFORE INSERT ON "Products"
+FOR EACH ROW EXECUTE FUNCTION public.batas_produk_starter();
+
+-- ---------- HAPUS PEMILIK = HAPUS AKUN AUTH ----------
+-- superadmin hapus baris Users -> akun auth (sandi, sesi) ikut dihapus, data toko
+-- ikut cascade dr auth.users. cuma jalan kalau yg hapus superadmin (bukan cascade
+-- dr service_role/admin api yg udah hapus auth duluan).
+CREATE OR REPLACE FUNCTION public.hapus_auth_pemilik()
+RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
+BEGIN
+  IF public.is_superadmin() AND OLD.role <> 'superadmin' THEN
+    DELETE FROM auth.users WHERE id = OLD.user_id;
+  END IF;
+  RETURN OLD;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS trg_hapus_auth_pemilik ON "Users";
+CREATE TRIGGER trg_hapus_auth_pemilik
+AFTER DELETE ON "Users"
+FOR EACH ROW EXECUTE FUNCTION public.hapus_auth_pemilik();
 
 -- ---------- GRANTS ----------
 GRANT USAGE ON SCHEMA public TO anon, authenticated;
@@ -164,6 +239,13 @@ GRANT ALL ON ALL TABLES IN SCHEMA public TO service_role;
 -- fungsi trigger gak perlu bisa dipanggil via /rest/v1/rpc; is_superadmin dipakai policy -> authenticated aja
 REVOKE EXECUTE ON FUNCTION public.handle_new_user() FROM PUBLIC, anon, authenticated;
 REVOKE EXECUTE ON FUNCTION public.guard_users_update() FROM PUBLIC, anon, authenticated;
+REVOKE EXECUTE ON FUNCTION public.paket_efektif(uuid) FROM PUBLIC, anon, authenticated;
+REVOKE EXECUTE ON FUNCTION public.batas_produk_starter() FROM PUBLIC, anon, authenticated;
+REVOKE EXECUTE ON FUNCTION public.hapus_auth_pemilik() FROM PUBLIC, anon, authenticated;
+REVOKE EXECUTE ON FUNCTION public.pakai_kuota_chat() FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.pakai_kuota_chat() TO authenticated;
+-- Chat_Usage cuma lewat pakai_kuota_chat (RLS on, tanpa policy, tanpa grant)
+REVOKE ALL ON "Chat_Usage" FROM anon, authenticated;
 REVOKE EXECUTE ON FUNCTION public.is_superadmin() FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.is_superadmin() TO authenticated;
 
@@ -176,6 +258,7 @@ ALTER TABLE "Transactions"        ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "Detail_Transactions" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "Pengumuman"          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "Platform_Settings"   ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "Chat_Usage"          ENABLE ROW LEVEL SECURITY;
 
 -- Users: baca/ubah profil sendiri; superadmin kelola semua
 DROP POLICY IF EXISTS users_select ON "Users";
