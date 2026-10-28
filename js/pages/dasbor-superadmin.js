@@ -237,7 +237,7 @@ function initSubscriptionChart(owners) {
           position: "bottom",
           labels: {
             boxWidth: 12,
-            font: { size: 11, family: "Inter" },
+            font: { size: 11 },
             padding: 10,
           },
         },

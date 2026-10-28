@@ -874,6 +874,12 @@ function muatSnapshotOffline() {
 
 // inisialisasi app pas DOM ready
 function initApp() {
+  // semua chart pake font yg sama kaya UI (Inter dr --font-sans), bukan
+  // default Chart.js (Helvetica) yg bikin label grafik beda sendiri
+  if (window.Chart) {
+    Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+  }
+
   // Pasang listener status autentikasi Supabase secara real-time
   if (window.supabaseClient) {
     window.supabaseClient.auth.onAuthStateChange(function(event, session) {

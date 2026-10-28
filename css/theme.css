@@ -771,7 +771,16 @@ html[data-theme="dark"] .beranda-chip {
    Shell berbingkai (css/dasbor.css): versi gelap
    bingkai paling gelap, panel konten satu tingkat lebih terang
    ============================================= */
-html[data-theme="dark"] .dasbor-shell { --bingkai: #070b16; }
+html[data-theme="dark"] .dasbor-shell,
+html[data-theme="dark"] .mobile-nav-overlay { --bingkai: #070b16; }
+/* drawer HP gelap: samain sama sidebar desktop gelap */
+html[data-theme="dark"] .mobile-nav-panel { background: var(--bingkai); }
+html[data-theme="dark"] .mobile-nav-link:hover { background: rgba(255, 255, 255, 0.05); }
+html[data-theme="dark"] .mobile-nav-link.active {
+  background: rgba(99, 102, 241, 0.18);
+  color: #c7d2fe;
+  box-shadow: none;
+}
 html[data-theme="dark"] .dasbor-shell .sidebar { background: var(--bingkai); }
 html[data-theme="dark"] .dasbor-shell .sidebar-link:hover { background: rgba(255, 255, 255, 0.05); }
 html[data-theme="dark"] .dasbor-shell .sidebar-link.active {
