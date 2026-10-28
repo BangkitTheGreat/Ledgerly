@@ -1611,6 +1611,9 @@ body {
 
 .chat-demo-input input {
   flex: 1;
+  /* input punya lebar bawaan (~20 karakter); tanpa min-width:0 dia gak mau
+     nyusut & dorong tombol kirim keluar kartu di HP <=415px */
+  min-width: 0;
   background: var(--slate-900);
   border: 1px solid var(--slate-700);
   border-radius: var(--radius-xl);
@@ -1625,6 +1628,7 @@ body {
 }
 
 .chat-demo-input button {
+  flex-shrink: 0;
   background: var(--indigo-600);
   color: #fff;
   padding: 10px;
